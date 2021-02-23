@@ -1,0 +1,25 @@
+extends layout
+
+block content
+
+  h1 Person: #{people.name}
+  p #{people.lifespan}
+
+  div(style='margin-left:20px;margin-top:20px')
+
+    h4 Vehicle:
+
+    dl
+      each vehicle in people_vehicle
+        dt
+          a(href=vehicle.url) #{vehicle.title}
+        dd #{vehicle.summary}
+
+      else
+        p This person has no vehicle associated with them.
+
+          hr
+  p
+    a(href=people.url+'/delete') Delete Person
+  p
+    a(href=poeple.url+'/update') Update Person
