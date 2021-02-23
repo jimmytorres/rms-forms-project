@@ -1,4 +1,13 @@
+html {
+  background-color: #5F5C5C;
+}
+
+.main-container{
+  background-color: #C4C4C4;
+}
+
 .sidebar-nav {
+  background-color: #C4C4C4; 
   margin-top: 20px;
   padding: 0;
   list-style: none;
