@@ -1,0 +1,29 @@
+extends layout
+
+block content
+
+  h1 #{title}: #{author.name}
+  p= people.lifespan
+  
+  if people_vehicle.length
+  
+    p #[strong Delete the following vehicles before attempting to delete this person.]
+  
+    div(style='margin-left:20px;margin-top:20px')
+
+      h4 Vehicle
+    
+      dl
+      each vehicle in people_vehicle
+        dt 
+          a(href=book.url) #{vehicle.title}
+        dd #{vehicle.summary}
+
+  else
+    p Do you really want to delete this person?
+    
+    form(method='POST' action='')
+      div.form-group
+        input#peopleid.form-control(type='hidden',name='peopleid', required='true', value=people._id )
+
+      button.btn.btn-primary(type='submit') Delete
