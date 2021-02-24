@@ -13,28 +13,28 @@ var incedent_controller = require('../controllers/incedentController');
 router.get('/', incedent_controller.index);
 
 // GET request for creating an Incedent. NOTE This must come before routes that display Incedent (uses id).
-router.get('/incedent/create', incedent_controller.incedent_create_get);
+router.get('/incident/create', incident_controller.incident_create_get);
 
 // POST request for creating Incedent.
-router.post('/incedent/create', incedent_controller.incedent_create_post);
+router.post('/incident/create', incident_controller.incident_create_post);
 
 // GET request to delete Incedent.
-router.get('/incedent/:id/delete', incedent_controller.incedent_delete_get);
+router.get('/incident/:id/delete', incident_controller.incident_delete_get);
 
 // POST request to delete Incedent.
-router.post('/incedent/:id/delete', incedent_controller.incedent_delete_post);
+router.post('/incident/:id/delete', incident_controller.incident_delete_post);
 
 // GET request to update Icedent.
-router.get('/incedent/:id/update', incedent_controller.incedent_update_get);
+router.get('/incident/:id/update', inceient_controller.incident_update_get);
 
 // POST request to update Icedent.
-router.post('/incedent/:id/update', incedent_controller.incedent_update_post);
+router.post('/incident/:id/update', incident_controller.incident_update_post);
 
 // GET request for one Icedent.
-router.get('/incedent/:id', incedent_controller.incedent_detail);
+router.get('/incident/:id', incident_controller.incident_detail);
 
 // GET request for list of all Icedent items.
-router.get('/incedents', incedent_controller.incedent_list);
+router.get('/incidents', incident_controller.incident_list);
 
 /// PEOPLE ROUTES ///
 
