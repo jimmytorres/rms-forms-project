@@ -2,8 +2,16 @@ html {
   background-color: #5F5C5C;
 }
 
+body {
+  background-color: #5F5C5C;
+}
+
 .main-container{
   background-color: #C4C4C4;
+}
+
+.col-sm-10{
+  background-color: #c4c4c4;
 }
 
 .sidebar-nav {
@@ -11,4 +19,8 @@ html {
   margin-top: 20px;
   padding: 0;
   list-style: none;
+}
+
+.counter-color{
+  background-color: #5F5C5C;
 }
