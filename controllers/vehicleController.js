@@ -1,18 +1,18 @@
-var Author = require('../models/author');
+var Vehicle = require('../models/vehicle');
 var async = require('async');
-var Book = require('../models/book');
+var People = require('../models/people');
 
 const { body,validationResult } = require('express-validator');
 
-// Display list of all Authors.
+// Display list of all Vehicles.
 exports.vehicle_list = function (req, res, next) {
 
-    Author.find()
-        .sort([['family_name', 'ascending']])
-        .exec(function (err, list_authors) {
+    Vehicle.find()
+        .sort([['model_name', 'ascending']])
+        .exec(function (err, list_vehicles) {
             if (err) { return next(err); }
             //Successful, so render
-            res.render('author_list', { title: 'Author List', author_list: list_authors });
+            res.render('vehicle_list', { title: 'Vehicle List', vehicle_list: list_vehicles });
         });
 
 };
@@ -21,42 +21,45 @@ exports.vehicle_list = function (req, res, next) {
 exports.vehicle_info = function (req, res, next) {
 
     async.parallel({
-        author: function (callback) {
+        vehicle: function (callback) {
             Vehicle.findById(req.params.id)
                 .exec(callback)
         },
-        authors_books: function (callback) {
-            Book.find({ 'author': req.params.id }, 'title summary')
+        vehicles_peoples: function (callback) {
+            People.find({ 'vehicle': req.params.id }, 'title summary')
                 .exec(callback)
         },
     }, function (err, results) {
         if (err) { return next(err); } // Error in API usage.
-        if (results.author == null) { // No results.
-            var err = new Error('Author not found');
+        if (results.vehicle == null) { // No results.
+            var err = new Error('Vehicle not found');
             err.status = 404;
             return next(err);
         }
         // Successful, so render.
-        res.render('author_detail', { title: 'Author Detail', author: results.author, author_books: results.authors_books });
+        res.render('vehicle_detail', { title: 'Vehicle Detail', vehicle: results.vehicle, vehicle_peoples: results.vehicles_peoples });
     });
 
 };
 
 // Display Author create form on GET.
-exports.author_create_get = function(req, res, next) {
-    res.render('author_form', { title: 'Create Author'});
+exports.vehicle_create_get = function(req, res, next) {
+    res.render('vehicle_form', { title: 'Create Vehicle'});
 };
 
 // Handle Author create on POST.
-exports.author_create_post = [
+exports.vehicle_create_post = [
 
+    //NEEDS CHANGING
     // Validate and sanitize fields.
-    body('first_name').trim().isLength({ min: 1 }).escape().withMessage('First name must be specified.')
+    body('plate_number').trim().isLength({ max: 7 }).escape().withMessage('First name must be specified.')
         .isAlphanumeric().withMessage('First name has non-alphanumeric characters.'),
-    body('family_name').trim().isLength({ min: 1 }).escape().withMessage('Family name must be specified.')
+    body('vehicle_color').trim().isLength({ min: 1 }).escape().withMessage('Family name must be specified.')
         .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
-    body('date_of_birth', 'Invalid date of birth').optional({ checkFalsy: true }).isISO8601().toDate(),
-    body('date_of_death', 'Invalid date of death').optional({ checkFalsy: true }).isISO8601().toDate(),
+    body('vehicle_year').trim().isLength({ min: 1 }).escape().withMessage('Year of car must be specefied')
+        .isAlphanumeric().withMessage('Car year has numbers only'),
+    // body('date_of_birth', 'Invalid date of birth').optional({ checkFalsy: true }).isISO8601().toDate(),
+    // body('date_of_death', 'Invalid date of death').optional({ checkFalsy: true }).isISO8601().toDate(),
 
     // Process request after validation and sanitization.
     (req, res, next) => {
@@ -65,7 +68,7 @@ exports.author_create_post = [
         const errors = validationResult(req);
         
         // Create Author object with escaped and trimmed data
-        var author = new Author(
+        var vehicle = new Vehicle(
             {
                 first_name: req.body.first_name,
                 family_name: req.body.family_name,
@@ -76,39 +79,39 @@ exports.author_create_post = [
 
         if (!errors.isEmpty()) {
             // There are errors. Render form again with sanitized values/errors messages.
-            res.render('author_form', { title: 'Create Author', author: author, errors: errors.array() });
+            res.render('vehicle_form', { title: 'Create Vehicle', vehicle: vehicle, errors: errors.array() });
             return;
         }
         else {
             // Data from form is valid.
 
             // Save author.
-            author.save(function (err) {
+            vehicle.save(function (err) {
                 if (err) { return next(err); }
                 // Successful - redirect to new author record.
-                res.redirect(author.url);
+                res.redirect(vehicle.url);
             });
         }
     }
 ];
 
 // Display Author delete form on GET.
-exports.author_delete_get = function (req, res, next) {
+exports.vehicle_delete_get = function (req, res, next) {
 
     async.parallel({
-        author: function (callback) {
-            Author.findById(req.params.id).exec(callback)
+        vehicle: function (callback) {
+            vehicle.findById(req.params.id).exec(callback)
         },
-        authors_books: function (callback) {
-            Book.find({ 'author': req.params.id }).exec(callback)
+        vehicles_books: function (callback) {
+            People.find({ 'vehicle': req.params.id }).exec(callback)
         },
     }, function (err, results) {
         if (err) { return next(err); }
-        if (results.author == null) { // No results.
-            res.redirect('/catalog/authors');
+        if (results.vehicle == null) { // No results.
+            res.redirect('/catalog/vehicles');
         }
         // Successful, so render.
-        res.render('author_delete', { title: 'Delete Author', author: results.author, author_books: results.authors_books });
+        res.render('vehicle_delete', { title: 'Delete Vehicle', vehicle: results.vehicle, vehicle_peoples: results.vehicles_peoples });
     });
 
 };
@@ -146,23 +149,23 @@ exports.author_delete_post = function (req, res, next) {
 };
 
 // Display Author update form on GET.
-exports.author_update_get = function (req, res, next) {
+exports.vehicle_update_get = function (req, res, next) {
 
-    Author.findById(req.params.id, function (err, author) {
+    Vehicle.findById(req.params.id, function (err, vehicle) {
         if (err) { return next(err); }
-        if (author == null) { // No results.
-            var err = new Error('Author not found');
+        if (vehicle == null) { // No results.
+            var err = new Error('Vehicle not found');
             err.status = 404;
             return next(err);
         }
         // Success.
-        res.render('author_form', { title: 'Update Author', author: author });
+        res.render('vehicle_form', { title: 'Update Vehicle', vehicle: vehicle });
 
     });
 };
 
 // Handle Author update on POST.
-exports.author_update_post = [
+exports.vehicle_update_post = [
 
     // Validate and santize fields.
     body('first_name').trim().isLength({ min: 1 }).escape().withMessage('First name must be specified.')
@@ -180,7 +183,7 @@ exports.author_update_post = [
         const errors = validationResult(req);
 
         // Create Author object with escaped and trimmed data (and the old id!)
-        var author = new Author(
+        var vehicle = new Vehicle(
             {
                 first_name: req.body.first_name,
                 family_name: req.body.family_name,
@@ -192,15 +195,15 @@ exports.author_update_post = [
 
         if (!errors.isEmpty()) {
             // There are errors. Render the form again with sanitized values and error messages.
-            res.render('author_form', { title: 'Update Author', author: author, errors: errors.array() });
+            res.render('vehicle_form', { title: 'Update Vehicle', vehicle: vehicle, errors: errors.array() });
             return;
         }
         else {
             // Data from form is valid. Update the record.
-            Author.findByIdAndUpdate(req.params.id, author, {}, function (err, theauthor) {
+            Vehicle.findByIdAndUpdate(req.params.id, vehicle, {}, function (err, thevehicle) {
                 if (err) { return next(err); }
                 // Successful - redirect to genre detail page.
-                res.redirect(theauthor.url);
+                res.redirect(thevehicle.url);
             });
         }
     }
