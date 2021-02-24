@@ -62,13 +62,13 @@ PeopleSchema.virtual('name').get(function () {
 
 // Virtual for author's URL
 PeopleSchema.virtual('url').get(function () {
-    return '/catalog/author/' + this._id;
+    return '/catalog/people/' + this._id;
 });
 
 
-AuthorSchema.virtual('date_of_birth_yyyy_mm_dd').get(function () {
+PeopleSchema.virtual('date_of_birth_yyyy_mm_dd').get(function () {
     return DateTime.fromJSDate(this.date_of_birth).toISODate(); //format 'YYYY-MM-DD'
 });
 
 //Export model
-module.exports = mongoose.model('Author', AuthorSchema);
+module.exports = mongoose.model('People', PeopleSchema);

@@ -4,6 +4,10 @@ var Vehicle = require('../models/vehicle')
 
 const { body, validationResult } = require('express-validator');
 
+exports.index = function (req, res ) {
+    res.render('index', {title: 'Police Report'});
+};
+
 // Display list of all Authors.
 exports.people_list = function (req, res, next) {
 

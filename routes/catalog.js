@@ -4,13 +4,13 @@ var router = express.Router();
 // Require controller modules.
 var people_controller = require('../controllers/peopleController');
 var vehicle_controller = require('../controllers/vehicleController');
-var incedent_controller = require('../controllers/incedentController');
+var incident_controller = require('../controllers/incedentController');
 
 
 /// INCEDENT ROUTES ///
 
 // GET catalog home page.
-router.get('/', incedent_controller.index);
+router.get('/', people_controller.index);
 
 // GET request for creating an Incedent. NOTE This must come before routes that display Incedent (uses id).
 router.get('/incident/create', incident_controller.incident_create_get);
