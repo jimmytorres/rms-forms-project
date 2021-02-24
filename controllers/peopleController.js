@@ -17,7 +17,7 @@ exports.people_list = function (req, res, next) {
 
 };
 
-// Display detail page for a specific Author.
+// Display detail page for a specific Person.
 exports.people_detail = function (req, res, next) {
 
     async.parallel({
@@ -117,7 +117,7 @@ exports.people_delete_get = function (req, res, next) {
             People.findById(req.params.id).exec(callback)
         },
         people_vehicle: function (callback) {
-            Vehicle.find({ 'author': req.params.id }).exec(callback)
+            Vehicle.find({ 'people': req.params.id }).exec(callback)
         },
     }, function (err, results) {
         if (err) { return next(err); }
