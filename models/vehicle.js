@@ -23,7 +23,7 @@ VehicleSchema.virtual('vehicle').get(function () {
 // Virtual for this author instance URL.
 
  VehicleSchema.virtual('url').get(function () {
-     return '/home/vehicle/' + this._id;
+     return '/catalog/vehicle/' + this._id;
  });
 
 // Export model.
