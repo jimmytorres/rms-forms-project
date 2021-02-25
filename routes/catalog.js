@@ -4,7 +4,7 @@ var router = express.Router();
 // Require controller modules.
 var people_controller = require('../controllers/peopleController');
 var vehicle_controller = require('../controllers/vehicleController');
-var incident_controller = require('../controllers/incedentController');
+var incident_controller = require('../controllers/incidentController');
 
 
 /// INCEDENT ROUTES ///

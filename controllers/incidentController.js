@@ -1,26 +1,35 @@
-var People = require('../models/people');
+var Incident = require('../models/incident');
 var async = require('async');
+var People = require('../models/people')
 var Vehicle = require('../models/vehicle')
 
 const { body, validationResult } = require('express-validator');
 
+exports.index = function (req, res) {
+    res.render('index', { title: 'Police Report' });
+};
+
 // Display list of all Authors.
 exports.people_list = function (req, res, next) {
 
-    People.find()
+    Incident.find()
         .sort([['name', 'ascending']])
-        .exec(function (err, list_authors) {
+        .exec(function (err, list_incidents) {
             if (err) { return next(err); }
             //Successful, so render
-            res.render('people_list', { title: 'People List', people_list: list_people });
+            res.render('incidents_list', { title: 'Incidents List', incidents_list: list_incidents });
         });
 
 };
 
 // Display detail page for a specific Person.
-exports.people_detail = function (req, res, next) {
+exports.incident_detail = function (req, res, next) {
 
     async.parallel({
+        incident: function (callback) {
+            Incident.findById(req.params.id)
+                .exec(callback)
+        },
         people: function (callback) {
             People.findById(req.params.id)
                 .exec(callback)
@@ -31,24 +40,24 @@ exports.people_detail = function (req, res, next) {
         },
     }, function (err, results) {
         if (err) { return next(err); } // Error in API usage.
-        if (results.people == null) { // No results.
-            var err = new Error('Person not found');
+        if (results.incident == null) { // No results.
+            var err = new Error('Incident not found');
             err.status = 404;
             return next(err);
         }
         // Successful, so render.
-        res.render('people_detail', { title: 'People Detail', people: results.people, vehicles_peoples: results.vehicles_peoples });
+        res.render('incident_detail', { title: 'Incident Detail', incident: results.incident, people: results.people, vehicles_peoples: results.vehicles_peoples });
     });
 
 };
 
 // Display Author create form on GET.
-exports.people_create_get = function (req, res, next) {
-    res.render('people_form', { title: 'Create Person' });
+exports.incident_create_get = function (req, res, next) {
+    res.render('incident_form', { title: 'Create Incident' });
 };
 
 // Handle Author create on POST.
-exports.people_create_post = [
+exports.incident_create_post = [
 
     // Validate and sanitize fields.
     body('first_name').trim().isLength({ min: 1 }).escape().withMessage('First name must be specified.')
@@ -67,42 +76,33 @@ exports.people_create_post = [
         const errors = validationResult(req);
 
         // Create Author object with escaped and trimmed data
-        var people = new People(
+        var incident = new Incident(
             {
-                p_code: { type: String, required: true, maxlength: 100 },
-                first_name: { type: String, required: true, maxlength: 100 },
-                middle_intial: { type: String, required: true, maxlength: 1 },
-                last_name: { type: String, required: true, maxlength: 100 },
-                date_of_birth: { type: Date, required: true },
-                date_of_death: { type: Date },
-                origin: { type: String, required: true, maxlength: 100 },
-                hair_color: { type: String, required: true, maxlength: 100 },
-                race: { type: String, required: true, maxlength: 100 },
-                ssn_dl: { type: Number, maxlength: 9 },
-                smt: { type: String },
-                address: { type: String, required: true, maxlength: 100 },
-                phone_number: { type: String, required: true, maxlength: 100 },
-                height: { type: Number, required: true, maxlength: 3 },
-                gang_aff: { type: String, maxlength: 100 },
-                hazard: { type: String, maxlength: 100 },
-                weight: { type: Number, required: true, maxlength: 3 },
-                eye_color: { type: String, required: true, maxlength: 3 },
+                formId: { type: String, required: true },
+                ocurenceDate: { type: Date, required: true },
+                ocurenceTime: { type: String, required: true, minlength: 0, maxlength: 24 },
+                incidentType: { type: String, required: true },
+                location: { type: String, required: true },
+                locationCommon: { type: String, required: true },
+                addPeople: { type: String, required: true },
+                addVehicle: { type: String },
+                narrative: [{ type: String, required: true }]
             }
         );
 
         if (!errors.isEmpty()) {
             // There are errors. Render form again with sanitized values/errors messages.
-            res.render('people_form', { title: 'Create Person', people: people, errors: errors.array() });
+            res.render('incident_form', { title: 'Create Incident', incident: incident, errors: errors.array() });
             return;
         }
         else {
             // Data from form is valid.
 
             // Save author.
-            people.save(function (err) {
+            incident.save(function (err) {
                 if (err) { return next(err); }
                 // Successful - redirect to new author record.
-                res.redirect(people.url);
+                res.redirect(incident.url);
             });
         }
     }
@@ -110,9 +110,12 @@ exports.people_create_post = [
 
 
 // Display Author delete form on GET.
-exports.people_delete_get = function (req, res, next) {
+exports.incident_delete_get = function (req, res, next) {
 
     async.parallel({
+        incident: function (callback) {
+            Incident.findById(req.params.id).exec(callback)
+        },
         people: function (callback) {
             People.findById(req.params.id).exec(callback)
         },
@@ -121,19 +124,22 @@ exports.people_delete_get = function (req, res, next) {
         },
     }, function (err, results) {
         if (err) { return next(err); }
-        if (results.people == null) { // No results.
-            res.redirect('/catalog/people');
+        if (results.incident == null) { // No results.
+            res.redirect('/catalog/incident');
         }
         // Successful, so render.
-        res.render('people_delete', { title: 'Delete Person', people: results.people, vehicles_peoples: results.vehicles_peoples });
+        res.render('incident_delete', { title: 'Delete Incident', incident: results.incident, people: results.people, vehicles_peoples: results.vehicles_peoples });
     });
 
 };
 
 // Handle Author delete on POST.
-exports.people_delete_post = function (req, res, next) {
+exports.incident_delete_post = function (req, res, next) {
 
     async.parallel({
+        incident: function (callback) {
+            Incident.findById(req.body.incidentid).exec(callback)
+        },
         people: function (callback) {
             People.findById(req.body.peopleid).exec(callback)
         },
@@ -145,15 +151,15 @@ exports.people_delete_post = function (req, res, next) {
         // Success.
         if (results.poeple_books.length > 0) {
             // Author has books. Render in same way as for GET route.
-            res.render('poeple_delete', { title: 'Delete Person', people: results.people, vehicles_peoples: results.vehicles_peoples });
+            res.render('incident_delete', { title: 'Delete Incident', incident: results.incident, people: results.people, vehicles_peoples: results.vehicles_peoples });
             return;
         }
         else {
             // Author has no books. Delete object and redirect to the list of authors.
-            People.findByIdAndRemove(req.body.peopleid, function deletePeople(err) {
+            People.findByIdAndRemove(req.body.incidentid, function deleteIncident(err) {
                 if (err) { return next(err); }
                 // Success - go to people list.
-                res.redirect('/catalog/people')
+                res.redirect('/catalog/incident')
             })
 
         }
@@ -162,24 +168,24 @@ exports.people_delete_post = function (req, res, next) {
 };
 
 // Display Author update form on GET.
-exports.people_update_get = function (req, res, next) {
+exports.incident_update_get = function (req, res, next) {
 
-    People.findById(req.params.id, function (err, people) {
+    Incident.findById(req.params.id, function (err, incident) {
         if (err) { return next(err); }
         if (people == null) { // No results.
-            var err = new Error('Person not found');
+            var err = new Error('Incident not found');
             err.status = 404;
             return next(err);
         }
         // Success.
-        res.render('people_form', { title: 'Update Person', people: people });
+        res.render('incident_form', { title: 'Update Incident', incident: incident });
 
     });
 };
 
 
 // Handle Author update on POST.
-exports.people_update_post = [
+exports.incident_update_post = [
 
     // Validate and santize fields.
     body('first_name').trim().isLength({ min: 1 }).escape().withMessage('First name must be specified.')
@@ -199,40 +205,31 @@ exports.people_update_post = [
         const errors = validationResult(req);
 
         // Create Author object with escaped and trimmed data (and the old id!)
-        var people = new People(
+        var incident = new Incident(
             {
-                p_code: { required: true },
-                first_name: { type: String, required: true, maxlength: 100 },
-                middle_intial: { type: String, required: true, maxlength: 1 },
-                last_name: { type: String, required: true, maxlength: 100 },
-                date_of_birth: { type: Date, required: true },
-                origin: { required: true },
-                hair_color: { required: true },
-                race: { required: true },
-                ssn_dl: { type: Number, maxlength: 9 },
-                smt: { type: String, required: true },
-                address: { type: address, required: true },
-                phone_number: { type: phone_number, required: true },
-                height: { type: Number, required: true, maxlength: 3 },
-                gang_aff: { required: true },
-                hazard: { required: true },
-                weight: { type: Number, required: true, maxlength: 3 },
-                eye_color: { type: String, required: true, maxlength: 3 },
-                _id: req.params.id
+                formId: { type: String, required: true },
+                ocurenceDate: { type: Date, required: true },
+                ocurenceTime: { type: String, required: true, minlength: 0, maxlength: 24 },
+                incidentType: { type: String, required: true },
+                location: { type: String, required: true },
+                locationCommon: { type: String, required: true },
+                addPeople: { type: String, required: true },
+                addVehicle: { type: String },
+                narrative: [{ type: String, required: true }]
             }
         );
 
         if (!errors.isEmpty()) {
             // There are errors. Render the form again with sanitized values and error messages.
-            res.render('people_form', { title: 'Update Person', people: people, errors: errors.array() });
+            res.render('incident_form', { title: 'Update Incident', incident: incident, errors: errors.array() });
             return;
         }
         else {
             // Data from form is valid. Update the record.
-            People.findByIdAndUpdate(req.params.id, people, {}, function (err, thepeople) {
+            Incident.findByIdAndUpdate(req.params.id, incident, {}, function (err, theincident) {
                 if (err) { return next(err); }
                 // Successful - redirect to genre detail page.
-                res.redirect(thepeople.url);
+                res.redirect(theincident.url);
             });
         }
     }
