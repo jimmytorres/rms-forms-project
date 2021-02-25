@@ -5,30 +5,29 @@ block content
 
   form(method='POST' action='')
     div.form-group
-      label(for='occurence date') Title:
-      input#title.form-control(type='text', placeholder='occurence date' name='occurence date' required='true' value=(undefined===incident ? '' : incident.title) )
+      label(for='occurenceDate') Occurence Date:
+      input#title.form-control(type='text', placeholder='occurence date' name='occurence date' required='true' value=(undefined===incident ? '' : incident.dateCreated) )
     div.form-group
-      label(for='occurnece time') Author:
-      select#author.form-control(type='select', placeholder='occurence time' name='occurence time' required='true' )
-        - authors.sort(function(a, b) {let textA = a.family_name.toUpperCase(); let textB = b.family_name.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
-        for author in authors
-          if book
-            option(value=author._id selected=(author._id.toString()===book.author._id.toString() ? 'selected' : false) ) #{author.name}
-          else
-            option(value=author._id) #{author.name}
+      label(for='occurneceTime') Occurence Time:
+      input#summary.form-control(type='textarea', placeholder='incidentType' name='incidentType' value=(undefined===book ? '' : incident.incidentType) required='true')
     div.form-group
-      label(for='summary') Summary:
-      input#summary.form-control(type='textarea', placeholder='Summary' name='summary' value=(undefined===book ? '' : book.summary) required='true')
+      label(for='incidentType') Incident Type:
+      input#summary.form-control(type='textarea', placeholder='incidentType' name='incidentType' value=(undefined===book ? '' : incident.incidentType) required='true')
     div.form-group
-      label(for='isbn') ISBN:
-      input#isbn.form-control(type='text', placeholder='ISBN13' name='isbn' value=(undefined===book ? '' : book.isbn) required='true') 
+      label(for='location') Location:
+      input#isbn.form-control(type='text', placeholder='Location' name='location' value=(undefined===book ? '' : incident.location) required='true') 
     div.form-group
-      label Genre:
-      div
-        for genre in genres
-          div(style='display: inline; padding-right:10px;')
-            input.checkbox-input(type='checkbox', name='genre', id=genre._id, value=genre._id, checked=genre.checked )
-            label(for=genre._id) #{genre.name}
+      label(for='locationCommon') Location Common Name:
+      input#summary.form-control(type='textarea', placeholder='locationCommon' name='locationCommon' value=(undefined===book ? '' : incident.locationCommon) required='true')
+    div.form-group
+      label(for='addPeople') Add Person:
+      input#summary.form-control(type='textarea', placeholder='addPeople' name='addPeople' value=(undefined===book ? '' : incident.addPeople) required='true')
+    div.form-group
+      label(for='addVehicle') Add Vehicle:
+      input#summary.form-control(type='textarea', placeholder='addVehicle' name='addVehicle' value=(undefined===book ? '' : incident.addVehicle) required='true')
+    div.form-group
+      label(for='narrative') Narrative:
+      input#summary.form-control(type='textarea', placeholder='narrative' name='narrative' value=(undefined===book ? '' : incident.narrative) required='true')
     button.btn.btn-primary(type='submit') Submit
 
   if errors 
