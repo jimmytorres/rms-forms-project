@@ -31,34 +31,19 @@ PeopleSchema.virtual('name').get(function () {
     return this.first_name + ' ' + this.middle_intial + ' ' + this.last_name;
 });
 
-// Virtual for person's date of birth
-PeopleSchema.virtual('lifespan').get(function () {
-    var string = '';
-    if (this.date_of_birth) {
-        string = DateTime.fromJSDate(this.date_of_birth).toLocaleString(DateTime.DATE_MED);
-    }
-    string += " - ";
-    var string = '';
-    if (this.date_of_death) {
-        string = DateTime.fromJSDate(this.date_of_death).toLocaleString(DateTime.DATE_MED);
-    }
-    return string;
-});
-
-// Virtual for person's hair color
-PeopleSchema.virtual('name').get(function () {
-    return this.hair_color + ' ' + this.eye_color;
-});
-
-// Virtual for person's weight and height
-PeopleSchema.virtual('name').get(function () {
-    return this.weight + ' ' + this.height;
-});
-
-// Virtual for person's origin
-PeopleSchema.virtual('name').get(function () {
-    return this.origin;
-});
+// // Virtual for person's date of birth
+// PeopleSchema.virtual('lifespan').get(function () {
+//     var string = '';
+//     if (this.date_of_birth) {
+//         string = DateTime.fromJSDate(this.date_of_birth).toLocaleString(DateTime.DATE_MED);
+//     }
+//     string += " - ";
+//     var string = '';
+//     if (this.date_of_death) {
+//         string = DateTime.fromJSDate(this.date_of_death).toLocaleString(DateTime.DATE_MED);
+//     }
+//     return string;
+// });
 
 // Virtual for author's URL
 PeopleSchema.virtual('url').get(function () {
@@ -66,9 +51,9 @@ PeopleSchema.virtual('url').get(function () {
 });
 
 
-PeopleSchema.virtual('date_of_birth_yyyy_mm_dd').get(function () {
-    return DateTime.fromJSDate(this.date_of_birth).toISODate(); //format 'YYYY-MM-DD'
-});
+// PeopleSchema.virtual('date_of_birth_yyyy_mm_dd').get(function () {
+//     return DateTime.fromJSDate(this.date_of_birth).toISODate(); //format 'YYYY-MM-DD'
+// });
 
 //Export model
 module.exports = mongoose.model('People', PeopleSchema);
