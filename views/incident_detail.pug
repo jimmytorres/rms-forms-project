@@ -3,24 +3,24 @@ extends layout
 block content
 div(class='row')
   div(class='col-sm-4')
-    p 
+    p #{}
   div(class='col-sm-8')
-    p 
+    p Police Report Form
 div(class='row')
   div(class='col')
-    p
+    p #{incident.occurence_date}
   div(class='col')
-    p 
+    p #{incident.occurence_time}
   div(class='col-sm-6')
-    p 
+    p #{incident.incident_type}
 div(class='row')
   div(class="col-1-2")
-    p 
+    p #{incident.location}
   div(class='col-1-2')
-    p
+    p #{incident.location_common}
 div(class='row')
-  p
+  p #{incident.add_people}
 div(class='row')
-  p
+  p #{incident.add_vehicle}
 div(class='row')
-  p
+  p #{incident.narrative}

@@ -23,4 +23,6 @@ body {
 
 .counter-color{
   background-color: #5F5C5C;
+  text-decoration: none;
+  list-style-type: none;
 }
