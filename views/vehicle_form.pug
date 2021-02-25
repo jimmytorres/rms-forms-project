@@ -5,30 +5,32 @@ block content
 
   form(method='POST' action='')
     div.form-group
-      label(for='title') Title:
-      input#title.form-control(type='text', placeholder='Name of book' name='title' required='true' value=(undefined===book ? '' : book.title) )
+      label(for='plate_number') Plate Number:
+      input#title.form-control(type='text', placeholder='plate_number' name='plate_number' required='true' value=() )
     div.form-group
-      label(for='author') Author:
-      select#author.form-control(type='select', placeholder='Select author' name='author' required='true' )
-        - authors.sort(function(a, b) {let textA = a.family_name.toUpperCase(); let textB = b.family_name.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
-        for author in authors
-          if book
-            option(value=author._id selected=(author._id.toString()===book.author._id.toString() ? 'selected' : false) ) #{author.name}
-          else
-            option(value=author._id) #{author.name}
+      label(for='vehicle_color') Vehicle Color:
+      input#title.form-control(type='text', placeholder='vehicle_color' name='vehicle_color' required='true' value=() )
     div.form-group
-      label(for='summary') Summary:
-      input#summary.form-control(type='textarea', placeholder='Summary' name='summary' value=(undefined===book ? '' : book.summary) required='true')
+      label(for='vehicle_year') Vehicle Year:
+      input#summary.form-control(type='textarea', placeholder='vehicle_year' name='vehicle_year' value=() required='true')
     div.form-group
-      label(for='isbn') ISBN:
-      input#isbn.form-control(type='text', placeholder='ISBN13' name='isbn' value=(undefined===book ? '' : book.isbn) required='true') 
+      label(for='vehicle_make') Vehicle Make:
+      input#isbn.form-control(type='text', placeholder='vehicle_make' name='vehicle_make' value=() required='true')
     div.form-group
-      label Genre:
-      div
-        for genre in genres
-          div(style='display: inline; padding-right:10px;')
-            input.checkbox-input(type='checkbox', name='genre', id=genre._id, value=genre._id, checked=genre.checked )
-            label(for=genre._id) #{genre.name}
+      label(for='vehicle_model') Vehicel Model:
+      input#isbn.form-control(type='text', placeholder='vehicle_model' name='vehicle_model' value=() required='true')
+    div.form-group
+      label(for='vehicle_body_type') Vehicle Body Type:
+      input#isbn.form-control(type='text', placeholder='vehicle_body_type' name='vehicle_body_type' value=() required='true')
+    div.form-group
+      label(for='vehicle_details') Vehicle Details:
+      input#isbn.form-control(type='text', placeholder='vehicle_details' name='vehicle_details' value=() required='true')
+    div.form-group
+      label(for='vehicle_vin') Vehicle VIN:
+      input#isbn.form-control(type='text', placeholder='vehicle_vin' name='vehicle_vin' value=() required='true')
+    div.form-group
+      label(for='vehicle_registration') Vehicle Registration:
+      input#isbn.form-control(type='text', placeholder='vehicle_registration' name='vehicle_registration' value=() required='true')
     button.btn.btn-primary(type='submit') Submit
 
   if errors 

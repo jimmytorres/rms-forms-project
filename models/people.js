@@ -32,6 +32,21 @@ PeopleSchema.virtual('name').get(function () {
 });
 
 
+// Virtual for person's hair color and eye color
+PeopleSchema.virtual('name').get(function () {
+    return this.hair_color + ' ' + this.eye_color;
+});
+
+// Virtual for person's weight and height
+PeopleSchema.virtual('name').get(function () {
+    return this.weight + ' ' + this.height;
+});
+
+// Virtual for person's origin
+PeopleSchema.virtual('name').get(function () {
+    return this.origin;
+});
+
 // Virtual for author's URL
 PeopleSchema.virtual('url').get(function () {
     return '/catalog/people/' + this._id;
