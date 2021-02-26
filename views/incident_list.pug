@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1= title
+
+  ul
+    each incident in incident_list
+      li
+        a(href=incident.url) #{incident.incident_id}
+        //|  (#{incident})
+
+    else
+      li There are no incidents.
