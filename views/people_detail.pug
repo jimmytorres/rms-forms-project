@@ -1,9 +1,19 @@
 extends layout
 
 block content
-
-  h1 Person: #{people.name}
-  p #{people.lifespan}
+div(class='row')
+  div(class='col')
+    //SSN
+    p 
+  div(class='col-sm-6')
+    //First Name - Middle Name - Last Name
+    p #{people.name}
+  div(class='col')
+    //DOB
+    p #{people.lifespan}
+div(class='')
+  
+  
 
   div(style='margin-left:20px;margin-top:20px')
 
