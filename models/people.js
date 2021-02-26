@@ -27,30 +27,39 @@ var PeopleSchema = new Schema(
 );
 
 // Virtual for author's full name
-PeopleSchema.virtual('name').get(function () {
-    return this.first_name + ' ' + this.middle_intial + ' ' + this.last_name;
-});
+PeopleSchema
+    .virtual('name')
+    .get(function () {
+        return this.first_name + ' ' + this.middle_intial + ' ' + this.last_name;
+    });
 
 
 // Virtual for person's hair color and eye color
-PeopleSchema.virtual('name').get(function () {
-    return this.hair_color + ' ' + this.eye_color;
-});
+PeopleSchema
+    .virtual('name')
+    .get(function () {
+        return this.hair_color + ' ' + this.eye_color;
+    });
 
 // Virtual for person's weight and height
-PeopleSchema.virtual('name').get(function () {
-    return this.weight + ' ' + this.height;
-});
+PeopleSchema
+    .virtual('name')
+    .get(function () {
+        return this.weight + ' ' + this.height;
+    });
 
 // Virtual for person's origin
-PeopleSchema.virtual('name').get(function () {
-    return this.origin;
-});
+PeopleSchema
+    .virtual('name')
+    .get(function () {
+        return this.origin;
+    });
 
 // Virtual for author's URL
-PeopleSchema.virtual('url').get(function () {
-    return '/catalog/people/' + this._id;
-});
+PeopleSchema.virtual('url')
+    .get(function () {
+        return '/catalog/people/' + this._id;
+    });
 
 //Export model
 module.exports = mongoose.model('People', PeopleSchema);
