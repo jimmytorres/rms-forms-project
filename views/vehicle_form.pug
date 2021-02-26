@@ -6,31 +6,31 @@ block content
   form(method='POST' action='')
     div.form-group
       label(for='plate_number') Plate Number:
-      input#title.form-control(type='text', placeholder='plate_number' name='plate_number' required='true' value=() )
+      input#title.form-control(type='text', placeholder='plate_number' name='plate_number' required='true' value=(undefined===vehicle ? '' : vehicle.plate_number) )
     div.form-group
       label(for='vehicle_color') Vehicle Color:
-      input#title.form-control(type='text', placeholder='vehicle_color' name='vehicle_color' required='true' value=() )
+      input#title.form-control(type='text', placeholder='vehicle_color' name='vehicle_color' required='true' value=(undefined===vehicle ? '' : vehicle.vehicle_color) )
     div.form-group
       label(for='vehicle_year') Vehicle Year:
-      input#summary.form-control(type='textarea', placeholder='vehicle_year' name='vehicle_year' value=() required='true')
+      input#summary.form-control(type='textarea', placeholder='vehicle_year' name='vehicle_year' value=(undefined===vehicle ? '' : vehicle.vehicle_year) required='true')
     div.form-group
       label(for='vehicle_make') Vehicle Make:
-      input#isbn.form-control(type='text', placeholder='vehicle_make' name='vehicle_make' value=() required='true')
+      input#isbn.form-control(type='text', placeholder='vehicle_make' name='vehicle_make' value=(undefined===vehicle ? '' : vehicle.vehicle_make) required='true')
     div.form-group
       label(for='vehicle_model') Vehicel Model:
-      input#isbn.form-control(type='text', placeholder='vehicle_model' name='vehicle_model' value=() required='true')
+      input#isbn.form-control(type='text', placeholder='vehicle_model' name='vehicle_model' value=(undefined===vehicle ? '' : vehicle.vehicle_model) required='true')
     div.form-group
       label(for='vehicle_body_type') Vehicle Body Type:
-      input#isbn.form-control(type='text', placeholder='vehicle_body_type' name='vehicle_body_type' value=() required='true')
+      input#isbn.form-control(type='text', placeholder='vehicle_body_type' name='vehicle_body_type' value=(undefined===vehicle ? '' : vehicle.vehicle_body_type) required='true')
     div.form-group
       label(for='vehicle_details') Vehicle Details:
-      input#isbn.form-control(type='text', placeholder='vehicle_details' name='vehicle_details' value=() required='true')
+      input#isbn.form-control(type='text', placeholder='vehicle_details' name='vehicle_details' value=(undefined===vehicle ? '' : vehicle.vehicle_details) required='true')
     div.form-group
       label(for='vehicle_vin') Vehicle VIN:
-      input#isbn.form-control(type='text', placeholder='vehicle_vin' name='vehicle_vin' value=() required='true')
+      input#isbn.form-control(type='text', placeholder='vehicle_vin' name='vehicle_vin' value=(undefined===vehcile ? '' : vehicle.vehicle_vin) required='true')
     div.form-group
       label(for='vehicle_registration') Vehicle Registration:
-      input#isbn.form-control(type='text', placeholder='vehicle_registration' name='vehicle_registration' value=() required='true')
+      input#isbn.form-control(type='text', placeholder='vehicle_registration' name='vehicle_registration' value=(undefined===vehicle ? '' : vehicle.vehicle_registration) required='true')
     button.btn.btn-primary(type='submit') Submit
 
   if errors 
