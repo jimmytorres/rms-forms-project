@@ -5,6 +5,9 @@ block content
 
   form(method='POST' action='')
     div.form-group
+      label(for='incident_id') Form Id:
+      input#occurence_date.form-control(type='text', placeholder='form id' name='incident_id' required='true' value=(undefined===incident ? '' : incident.incident_id) )
+    div.form-group
       label(for='occurence_date') Occurence Date:
       input#occurence_date.form-control(type='text', placeholder='occurence Date' name='occurence_date' required='true' value=(undefined===incident ? '' : incident.occurence_date) )
     div.form-group
