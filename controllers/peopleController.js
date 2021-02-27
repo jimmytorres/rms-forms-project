@@ -1,8 +1,8 @@
 var People = require('../models/people');
+var async = require('async');
+var Vehicle = require('../models/vehicle');
 
-
-
-const { body,validationResult } = require('express-validator');
+const { body, validationResult } = require('express-validator');
 
 // Display list of all People.
 exports.people_list = function (req, res) {
@@ -16,9 +16,30 @@ exports.people_list = function (req, res) {
 };
 
 // Display detail page for a specific Person.
-exports.people_detail = function (req, res) {
-    res.send('NOT IMPLEMENTED: People detail: ' + req.params.id );
+exports.people_detail = function (req, res, next) {
+
+    async.parallel({
+        people: function (callback) {
+            People.findById(req.params.id)
+                .exec(callback)
+        },
+        peoples_vehicles: function (callback) {
+            Vehicle.find({ 'people': req.params.id }, 'title summary')
+                .exec(callback)
+        },
+    }, function (err, results) {
+        if (err) { return next(err); } // Error in API usage.
+        if (results.people == null) { // No results.
+            var err = new Error('Person not found');
+            err.status = 404;
+            return next(err);
+        }
+        // Successful, so render.
+        res.render('people_detail', { title: 'Person Detail', people: results.people, people_vehicls: results.peoples_vehicles });
+    });
+
 };
+
 
 // Display People create form on GET.
 exports.people_create_get = function (req, res, next) {
