@@ -4,14 +4,18 @@ html {
 
 body {
   background-color: #5F5C5C;
+  color: #2D9AB1;
 }
 
 .main-container{
   background-color: #C4C4C4;
+  color: #2D9AB1;
+  text-align: center;
 }
 
 .col-sm-10{
   background-color: #c4c4c4;
+  color: #2D9AB1;
 }
 
 .sidebar-nav {
@@ -19,10 +23,12 @@ body {
   margin-top: 20px;
   padding: 0;
   list-style: none;
+  color: #2D9AB1;
 }
 
 .counter-color{
   background-color: #5F5C5C;
   text-decoration: none;
-  list-style-type: none;
+  list-style: none;
+  color: #2D9AB1;
 }
