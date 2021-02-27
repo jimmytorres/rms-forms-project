@@ -1,41 +1,47 @@
-var vehicle = require('../models/vehicle');
+var Vehicle = require('../models/vehicle');
 
-// Display list of all BookInstances.
+// Display list of all BVehicle.
 exports.vehicle_list = function(req, res) {
-    res.send('NOT IMPLEMENTED: vehicle list');
+    Vehicle.find({}, 'title vehicle')
+        .populate('vehicle')
+        .exec(function (err, list_vehicles) {
+            if (err) { return next(err); }
+            //Successful, so render
+            res.render('vehicle_list', { title: 'Vehicle List', vehicle_list: list_vehicles });
+        });
 };
 
-// Display detail page for a specific BookInstance.
+// Display detail page for a specific Vehicle.
 exports.vehicle_detail = function(req, res) {
     res.send('NOT IMPLEMENTED: Vehicle detail: ' + req.params.id);
 };
 
-// Display BookInstance create form on GET.
+// Display Vehicle create form on GET.
 exports.vehicle_create_get = function(req, res) {
-    res.send('NOT IMPLEMENTED: Vehicle create GET');
+    res.render('vehicle_form', { title: 'Create Vehicle' });
 };
 
-// Handle BookInstance create on POST.
+// Handle Vehicle create on POST.
 exports.vehicle_create_post = function(req, res) {
     res.send('NOT IMPLEMENTED: Vehicle create POST');
 };
 
-// Display BookInstance delete form on GET.
+// Display Vehicle delete form on GET.
 exports.vehicle_delete_get = function(req, res) {
     res.send('NOT IMPLEMENTED: Vehicle delete GET');
 };
 
-// Handle BookInstance delete on POST.
+// Handle Vehicle delete on POST.
 exports.vehicle_delete_post = function(req, res) {
     res.send('NOT IMPLEMENTED: Vehicle delete POST');
 };
 
-// Display BookInstance update form on GET.
+// Display Vehicle update form on GET.
 exports.vehicle_update_get = function(req, res) {
     res.send('NOT IMPLEMENTED: Vehicle update GET');
 };
 
-// Handle bookinstance update on POST.
+// Handle Vehicle update on POST.
 exports.vehicle_update_post = function(req, res) {
     res.send('NOT IMPLEMENTED: Vehicle update POST');
 };
