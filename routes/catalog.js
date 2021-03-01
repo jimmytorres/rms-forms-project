@@ -7,7 +7,7 @@ var vehicle_controller = require('../controllers/vehicleController');
 var incident_controller = require('../controllers/incidentController');
 
 // GET catalog home page.
-router.get('/', people_controller.index);
+router.get('/', incident_controller.index);
 
 /// INCIDENT ROUTES ///
 router.get('/incident/create', incident_controller.incident_create_get);
