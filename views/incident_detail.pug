@@ -1,26 +1,26 @@
 extends layout
 
 block content
-div(class='row')
-  div(class='col-sm-4')
-    p #{incident.incident_id}
-  div(class='col-sm-8')
-    p Police Report Form
-div(class='row')
-  div(class='col')
-    p #{incident.occurence_date}
-  div(class='col')
-    p #{incident.occurence_time}
-  div(class='col-sm-6')
-    p #{incident.incident_type}
-div(class='row')
-  div(class="col")
-    p #{incident.location}
-  div(class='col')
-    p #{incident.location_common}
-div(class='row')
-  p #{incident.add_people}
-div(class='row')
-  p #{incident.add_vehicle}
-div(class='row')
-  p #{incident.narrative}
+  div(class='row')
+    div(class='col-sm-4')
+      p #{incident.incident_id}
+    div(class='col-sm-8')
+      p Police Report Form
+  div(class='row')
+    div(class='col')
+      p #{incident.occurence_date}
+    div(class='col')
+      p #{incident.occurence_time}
+    div(class='col-sm-6')
+      p #{incident.incident_type}
+  div(class='row')
+    div(class="col")
+      p #{incident.location}
+    div(class='col')
+      p #{incident.location_common}
+  div(class='row')
+    p #{incident.add_people}
+  div(class='row')
+    p #{incident.add_vehicle}
+  div(class='row')
+    p #{incident.narrative}
