@@ -7,7 +7,7 @@ const { body, validationResult } = require('express-validator');
 // Display list of all People.
 exports.people_list = function (req, res) {
     People.find({}, 'title people')
-        .populate('people')
+        .sort([['last_name', 'ascending']])
         .exec(function (err, list_peoples) {
             if (err) { return next(err); }
             //Successful, so render
@@ -35,7 +35,7 @@ exports.people_detail = function (req, res, next) {
             return next(err);
         }
         // Successful, so render.
-        res.render('people_detail', { title: 'Person Detail', people: results.people, people_vehicls: results.peoples_vehicles });
+        res.render('people_detail', { title: 'Person Detail', people: results.people, people_vehicles: results.peoples_vehicles });
     });
 
 };
