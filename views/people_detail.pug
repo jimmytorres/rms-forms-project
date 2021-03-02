@@ -1,35 +1,35 @@
 extends layout
 
 block content
-div(class='row')
-  div(class='col')
-    //SSN
-    p 
-  div(class='col-sm-6')
-    //First Name - Middle Name - Last Name
-    p #{people.name}
-  div(class='col')
-    //DOB
-    p #{people.lifespan}
-div(class='')
-  
-  
 
-  div(style='margin-left:20px;margin-top:20px')
+  div(class='row')
+    div(class='col')
+      //-SSN
+    div(class='col-sm-6')
+      //-First Name - Middle Name - Last Name
+      p #{people.name}
+    div(class='col')
+      //-DOB
+      p #{people.lifespan}
+  div(class='row')
+    
+    
 
-    h4 Vehicle:
+    div(style='margin-left:20px;margin-top:20px')
 
-    dl
-      each vehicle in people_vehicle
-        dt
-          a(href=vehicle.url) #{vehicle.title}
-        dd #{vehicle.summary}
+      h4 Vehicle:
 
-      else
-        p This person has no vehicle associated with them.
+      dl
+        each vehicle in people_vehicle
+          dt
+            a(href=vehicle.url) #{vehicle.title}
+          dd #{vehicle.summary}
 
-          hr
-  p
-    a(href=people.url+'/delete') Delete Person
-  p
-    a(href=poeple.url+'/update') Update Person
+        else
+          p This person has no vehicle associated with them.
+
+            hr
+    p
+      a(href=people.url+'/delete') Delete Person
+    p
+      a(href=people.url+'/update') Update Person

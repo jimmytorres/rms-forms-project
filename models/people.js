@@ -26,6 +26,12 @@ var PeopleSchema = new Schema(
     }
 );
 
+// Virtual for author's URL
+PeopleSchema.virtual('url')
+    .get(function () {
+        return '/catalog/people/' + this._id;
+    });
+
 // Virtual for author's full name
 PeopleSchema
     .virtual('name')
@@ -36,29 +42,23 @@ PeopleSchema
 
 // Virtual for person's hair color and eye color
 PeopleSchema
-    .virtual('name')
+    .virtual('face_detail')
     .get(function () {
         return this.hair_color + ' ' + this.eye_color;
     });
 
 // Virtual for person's weight and height
 PeopleSchema
-    .virtual('name')
+    .virtual('body_detail')
     .get(function () {
         return this.weight + ' ' + this.height;
     });
 
 // Virtual for person's origin
 PeopleSchema
-    .virtual('name')
+    .virtual('nation')
     .get(function () {
         return this.origin;
-    });
-
-// Virtual for author's URL
-PeopleSchema.virtual('url')
-    .get(function () {
-        return '/catalog/people/' + this._id;
     });
 
 //Export model

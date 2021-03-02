@@ -116,20 +116,120 @@ exports.incident_create_post = [
 
 // Display BookInstance delete form on GET.
 exports.incident_delete_get = function (req, res) {
-    res.send('NOT IMPLEMENTED: People delete GET');
+    async.parallel({
+        incident: function (callback) {
+            Incident.findById(req.params.id).populate('people').populate('vehicle').exec(callback);
+        },
+    }, function (err, results) {
+        if (err) { return next(err); }
+        if (results.incident == null) { // No results.
+            res.redirect('/catalog/incident');
+        }
+        // Successful, so render.
+        res.render('incident_delete', { title: 'Delete Incident', incident: results.incident });
+    });
 };
 
 // Handle BookInstance delete on POST.
 exports.incident_delete_post = function (req, res) {
-    res.send('NOT IMPLEMENTED: People delete POST');
+    // Assume the post has valid id (ie no validation/sanitization).
+
+    async.parallel({
+        incident: function (callback) {
+            Incident.findById(req.body.id).populate('people').populate('vehicle').exec(callback);
+        },
+    }, function (err, results) {
+        if (err) { return next(err); }
+        // Success
+        else {
+            // Book has no BookInstance objects. Delete object and redirect to the list of books.
+            Incident.findByIdAndRemove(req.body.id, function deleteIncident(err) {
+                if (err) { return next(err); }
+                // Success - got to books list.
+                res.redirect('/catalog/incidents');
+            });
+
+        }
+    });
 };
 
 // Display BookInstance update form on GET.
 exports.incident_update_get = function (req, res) {
-    res.send('NOT IMPLEMENTED: People update GET');
+    // Get book, authors and genres for form.
+    async.parallel({
+        incident: function (callback) {
+            Incident.findById(req.params.id).populate('people').populate('vehicle').exec(callback);
+        },
+        people: function (callback) {
+            People.find(callback);
+        },
+        vehicle: function (callback) {
+            Vehicle.find(callback);
+        },
+    }, function (err, results) {
+        if (err) { return next(err); }
+        if (results.incident == null) { // No results.
+            var err = new Error('Incident not found');
+            err.status = 404;
+            return next(err);
+        }
+        res.render('incident_form', { title: 'Update Incident', people: results.people, vehicle: results.vehicle, incident: results.incident });
+    });
 };
 
 // Handle bookinstance update on POST.
-exports.incident_update_post = function (req, res) {
-    res.send('NOT IMPLEMENTED: People update POST');
-};
+exports.incident_update_post = [
+
+    // Validate and santitize fields.
+    body('title', 'Title must not be empty.').trim().isLength({ min: 1 }).escape(),
+    body('person', 'Person must not be empty.').trim().isLength({ min: 1 }).escape(),
+    body('vehicle', 'Vehicle must not be empty.').trim().isLength({ min: 1 }).escape(),
+
+    // Process request after validation and sanitization.
+    (req, res, next) => {
+
+        // Extract the validation errors from a request.
+        const errors = validationResult(req);
+
+        // Create a Book object with escaped/trimmed data and old id.
+        var incident = new Incident(
+            {
+                formid: req.body.formid,
+                occurrenceDate: req.body.occurrenceDate,
+                occurrenceTime: req.body.occurrenceTime,
+                incidentType: req.body.incidentType,
+                location: req.body.location,
+                locationCommon: req.body.locationCommon,
+                addPeople: req.body.addPeople,
+                addVehicle: req.body.addVehicle,
+                narrative: req.body.narrative,
+                _id: req.params.id // This is required, or a new ID will be assigned!
+            });
+
+        if (!errors.isEmpty()) {
+            // There are errors. Render form again with sanitized values/error messages.
+
+            // Get all authors and genres for form
+            async.parallel({
+                people: function (callback) {
+                    People.find(callback);
+                },
+                vehicle: function (callback) {
+                    Vehicle.find(callback);
+                },
+            }, function (err, results) {
+                if (err) { return next(err); }
+                res.render('incident_form', { title: 'Update Incident', people: results.people, vehicle: results.vehicle, incident: incident, errors: errors.array() });
+            });
+            return;
+        }
+        else {
+            // Data from form is valid. Update the record.
+            Incident.findByIdAndUpdate(req.params.id, incident, {}, function (err, theincident) {
+                if (err) { return next(err); }
+                // Successful - redirect to book detail page.
+                res.redirect(theincident.url);
+            });
+        }
+    }
+];
