@@ -21,10 +21,10 @@ block content
       h4 Vehicle:
 
       dl
-        each vehicle in people_vehicle
+        each vehicle in people_vehicles
           dt
-            a(href=vehicle.url) #{vehicle.title}
-          dd #{vehicle.summary}
+            a(href=vehicle.url) #{vehicle.vehicle_model}
+          dd #{vehicle.vehicle_body_type}
 
         else
           p This person has no vehicle associated with them.
