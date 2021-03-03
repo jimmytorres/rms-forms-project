@@ -26,11 +26,34 @@ var PeopleSchema = new Schema(
     }
 );
 
-// Virtual for Person's URL
-PeopleSchema.virtual('url')
+// Virtual for Person's full name
+PeopleSchema
+    .virtual('name')
     .get(function () {
-        return '/catalog/people/' + this._id;
+        return this.first_name + ' ' + this.middle_intial + ' ' + this.last_name;
     });
+
+// Virtual for Person's lifespan
+PeopleSchema.virtual('lifespan').get(function () {
+    var string = '';
+    if (this.date_of_birth) {
+        string = DateTime.fromJSDate(this.date_of_birth).toLocaleString(DateTime.DATE_MED);
+    }
+    string += " - ";
+    if (this.date_of_death) {
+        string += DateTime.fromJSDate(this.date_of_death).toLocaleString(DateTime.DATE_MED);
+    }
+    return string;
+});
+
+PeopleSchema.virtual('date_of_birth_yyyy_mm_dd').get(function () {
+    return DateTime.fromJSDate(this.date_of_birth).toISODate(); //format 'YYYY-MM-DD'
+});
+
+
+PeopleSchema.virtual('date_of_death_yyyy_mm_dd').get(function () {
+    return DateTime.fromJSDate(this.date_of_death).toISODate(); //format 'YYYY-MM-DD'
+});
 
 // Virtual for Person's p code
 PeopleSchema
@@ -81,14 +104,6 @@ PeopleSchema
         return this.hazard;
     });
 
-// Virtual for Person's full name
-PeopleSchema
-    .virtual('name')
-    .get(function () {
-        return this.first_name + ' ' + this.middle_intial + ' ' + this.last_name;
-    });
-
-
 // Virtual for Person's hair color and eye color
 PeopleSchema
     .virtual('face_detail')
@@ -108,6 +123,12 @@ PeopleSchema
     .virtual('nation')
     .get(function () {
         return this.origin;
+    });
+
+// Virtual for Person's URL
+PeopleSchema.virtual('url')
+    .get(function () {
+        return '/catalog/people/' + this._id;
     });
 
 //Export model

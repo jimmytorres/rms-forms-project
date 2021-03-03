@@ -6,9 +6,8 @@ block content
   ul
     each vehicle in vehicle_list
       li
-        a(href=vehicle.url) 
-        //#{vehcile}
-        //|  (#{vehicle.lifespan})
+        a(href=vehicle.url) #{vehicle.model}
+        |  (#{vehicle.make})
 
     else
       li There are no vehicles.
