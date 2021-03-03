@@ -4,7 +4,7 @@ var async = require('async');
 
 const { body, validationResult } = require('express-validator');
 // Display list of all BVehicle.
-exports.vehicle_list = function(req, res) {
+exports.vehicle_list = function (req, res) {
     Vehicle.find({}, 'title vehicle')
         .sort([['vehicle_model', 'ascending']])
         .exec(function (err, list_vehicles) {
@@ -40,7 +40,7 @@ exports.vehicle_detail = function (req, res, next) {
 };
 
 // Display Vehicle create form on GET.
-exports.vehicle_create_get = function(req, res) {
+exports.vehicle_create_get = function (req, res) {
     res.render('vehicle_form', { title: 'Create Vehicle' });
 };
 
@@ -58,9 +58,9 @@ exports.vehicle_create_post = [
         .isAlphanumeric().withMessage('Vehicle make has alphanumeric characters.'),
     body('vehicle_model').trim().isLength({ min: 1 }).escape().withMessage('Vehicle model must be specified.')
         .isAlphanumeric().withMessage('Vehicle model has alphanumeric characters.'),
-    body('vehicle_body_type').trim().isLength({ max: 2}).escape().withMessage('Vehicle body type must be specified.')
+    body('vehicle_body_type').trim().isLength({ max: 2 }).escape().withMessage('Vehicle body type must be specified.')
         .isAlphanumeric().withMessage('Vehicle body type has alphanumeric characters.'),
-    body('vehicle_details').trim().isLength({ min: 1}).escape().withMessage('Vehicle details must be specified.')
+    body('vehicle_details').trim().isLength({ min: 1 }).escape().withMessage('Vehicle details must be specified.')
         .isAlphanumeric().withMessage('Vehicle details has non-alphanumeric characters.'),
     body('vehicle_vin').trim().isLength({ min: 1, max: 17 }).escape().withMessage('Vehicle vin must be specified.')
         .isAlphanumeric().withMessage('Vehicle vin has numeric characters.'),
