@@ -6,7 +6,7 @@ const { body, validationResult } = require('express-validator');
 
 // Display list of all People.
 exports.people_list = function (req, res) {
-    People.find({}, 'title people')
+    People.find()
         .sort([['last_name', 'ascending']])
         .exec(function (err, list_peoples) {
             if (err) { return next(err); }

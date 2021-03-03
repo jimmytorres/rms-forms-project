@@ -5,7 +5,7 @@ var async = require('async');
 const { body, validationResult } = require('express-validator');
 // Display list of all BVehicle.
 exports.vehicle_list = function (req, res) {
-    Vehicle.find({}, 'title vehicle')
+    Vehicle.find()
         .sort([['vehicle_model', 'ascending']])
         .exec(function (err, list_vehicles) {
             if (err) { return next(err); }

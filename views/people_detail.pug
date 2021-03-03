@@ -23,8 +23,7 @@ block content
       dl
         each vehicle in people_vehicles
           dt
-            a(href=vehicle.url) #{vehicle.vehicle_model}
-          dd #{vehicle.vehicle_body_type}
+            a(href=vehicle.url) #{vehicle.summary}
 
         else
           p This person has no vehicle associated with them.
