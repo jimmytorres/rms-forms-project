@@ -66,14 +66,18 @@ exports.incident_create_get = function (req, res, next) {
 exports.incident_create_post = [
 
     // Validate and sanitize fields.
-    body('first_name').trim().isLength({ min: 1 }).escape().withMessage('First name must be specified.')
+    body('formid').trim().isLength({ min: 1 }).escape().withMessage('First name must be specified.')
         .isAlphanumeric().withMessage('First name has non-alphanumeric characters.'),
-    body('middle_intial').trim().isLength({ max: 1 }).escape().withMessage('Middle intial must be specified.')
+    body('incidentType').trim().isLength({ min: 1 }).escape().withMessage('Family name must be specified.')
         .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
-    body('last_name').trim().isLength({ min: 1 }).escape().withMessage('Family name must be specified.')
+    body('addPeople').trim().isLength({ max: 1 }).escape().withMessage('Middle intial must be specified.')
         .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
-    body('date_of_birth', 'Invalid date of birth').optional({ checkFalsy: true }).isISO8601().toDate(),
-    body('date_of_death', 'Invalid date of death').optional({ checkFalsy: true }).isISO8601().toDate(),
+    body('addVehicle').trim().isLength({ max: 1 }).escape().withMessage('Middle intial must be specified.')
+        .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
+    body('occurrenceDate', 'Invalid date of birth').optional({ checkFalsy: true }).isISO8601().toDate(),
+    body('occurrenceTime', 'Invalid date of death').optional({ checkFalsy: true }).isISO8601().toDate(),
+    body('narrative').trim().isLength({ min: 1 }).escape().withMessage('Narrative must be specified.')
+        .isString().withMessage('Narrative has alpha characters.'),
 
     // Process request after validation and sanitization.
     (req, res, next) => {
@@ -181,9 +185,18 @@ exports.incident_update_get = function (req, res) {
 exports.incident_update_post = [
 
     // Validate and santitize fields.
-    body('title', 'Title must not be empty.').trim().isLength({ min: 1 }).escape(),
-    body('person', 'Person must not be empty.').trim().isLength({ min: 1 }).escape(),
-    body('vehicle', 'Vehicle must not be empty.').trim().isLength({ min: 1 }).escape(),
+    body('formid').trim().isLength({ min: 1 }).escape().withMessage('First name must be specified.')
+        .isAlphanumeric().withMessage('First name has non-alphanumeric characters.'),
+    body('incidentType').trim().isLength({ min: 1 }).escape().withMessage('Family name must be specified.')
+        .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
+    body('addPeople').trim().isLength({ max: 1 }).escape().withMessage('Middle intial must be specified.')
+        .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
+    body('addVehicle').trim().isLength({ max: 1 }).escape().withMessage('Middle intial must be specified.')
+        .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
+    body('occurrenceDate', 'Invalid date of birth').optional({ checkFalsy: true }).isISO8601().toDate(),
+    body('occurrenceTime', 'Invalid date of death').optional({ checkFalsy: true }).isISO8601().toDate(),
+    body('narrative').trim().isLength({ min: 1 }).escape().withMessage('Narrative must be specified.')
+        .isString().withMessage('Narrative has alpha characters.'),
 
     // Process request after validation and sanitization.
     (req, res, next) => {
