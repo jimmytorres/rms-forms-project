@@ -3,43 +3,49 @@ extends layout
 block content
   .row
     .col
-      p Code #{people.p_code}
+      p Code: #{people.p_code}
     .col-6
-      p #{people.name}
+      p Name: #{people.name}
     .col
-      p SSN/DL #{people.ssn_dl}
+      p SSN: #{people.social}
   .row
     .col
       img(src='', alt='Person pic')
     .col
-      p Race #{people.race}
+      p Race: #{people.prace}
     .col
-      p Gender #{people.origin}
+      p Gender: #{people.nation}
     .col
-      p Height #{people.height}
+      p Height: #{people.height}
     .col
-      p Weight #{people.weight}
+      p Weight: #{people.weight}
     .col
-      p Hair Color #{people.hair_color}
+      p Hair Color: #{people.hair_color}
     .row
       .col
-        p #{people.lifespan}
+        p DOB/DOD: #{people.lifespan}
       .col
-        p Eye Color #{people.eye_color}
+        p Eye Color: #{people.eye_color}
   .row
     .col
-      p Gang Affiliation #{people.gang_aff}
+      p Gang Affiliation: #{people.gang}
     .col 
-      p Address #{people.address}
+      p Address: #{people.adress}
     .col
-      p Phone Number #{people.phone_number}
+      p Phone Number: #{people.phone}
   .row
     .col
-      p Address #{people.address}
+      p Drivers Licence: #{people.drivers}
     .col
-      p Phone Number #{people.phone_number}
+      p Address: #{people.adress}
+    .col
+      p Phone Number: #{people.phone}
   .row
-    p Scars/Marks/Tattoos #{people.smt}
+    .col
+      p Scars/Marks/Tattoos: #{people.scar}
+    .col
+      p HAZARD: #{people.haz}
+
     
     
 
