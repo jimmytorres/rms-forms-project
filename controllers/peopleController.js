@@ -50,14 +50,41 @@ exports.people_create_get = function (req, res, next) {
 exports.people_create_post = [
 
     // Validate and sanitize fields.
+    body('p_code').trim().isLength({ min: 1 }).escape().withMessage('Family name must be specified.')
+        .isAlphanumeric().withMessage('P code has non-alphanumeric characters.'),
     body('first_name').trim().isLength({ min: 1 }).escape().withMessage('First name must be specified.')
         .isAlphanumeric().withMessage('First name has non-alphanumeric characters.'),
     body('middle_intial').trim().isLength({ max: 1 }).escape().withMessage('Middle intial must be specified.')
-        .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
+        .isAlphanumeric().withMessage('Middle intial has non-alphanumeric characters.'),
     body('last_name').trim().isLength({ min: 1 }).escape().withMessage('Family name must be specified.')
-        .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
+        .isAlphanumeric().withMessage('Last name has non-alphanumeric characters.'),
     body('date_of_birth', 'Invalid date of birth').optional({ checkFalsy: true }).isISO8601().toDate(),
     body('date_of_death', 'Invalid date of death').optional({ checkFalsy: true }).isISO8601().toDate(),
+    body('origin').trim().isLength({ min: 1 }).escape().withMessage('Family name must be specified.')
+        .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
+    body('hair_color').trim().isLength({ max: 3 }).escape().withMessage('Family name must be specified.')
+        .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
+    body('race').trim().isLength({ min: 1 }).escape().withMessage('Family name must be specified.')
+        .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
+    body('ssn').trim().isLength({ max: 9 }).escape().withMessage('Family name must be specified.')
+        .isAlphanumeric().withMessage('Social security has numeric characters.'),
+    body('dl', 'Invalid expiration date for drivers license').optional({ checkFalsy: true }).isISO8601().toDate(),
+    body('smt').trim().isLength({ min: 1 }).escape().withMessage('Family name must be specified.')
+        .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
+    body('address').trim().isLength({ min: 1 }).escape().withMessage('Family name must be specified.')
+        .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
+    body('phone_number').trim().isLength({ min: 1 }).escape().withMessage('Family name must be specified.')
+        .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
+    body('height').trim().isLength({ max: 3 }).escape().withMessage('Family name must be specified.')
+        .isNumeric().withMessage('Height has numeric characters.'),
+    body('gang_aff').trim().isLength({ min: 1 }).escape().withMessage('Family name must be specified.')
+        .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
+    body('hazard').trim().isLength({ min: 1 }).escape().withMessage('Family name must be specified.')
+        .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
+    body('weight').trim().isLength({ max: 3 }).escape().withMessage('Family name must be specified.')
+        .isNumeric().withMessage('Weight has numeric characters.'),
+    body('eye_color').trim().isLength({ max: 3 }).escape().withMessage('Family name must be specified.')
+        .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
 
     // Process request after validation and sanitization.
     (req, res, next) => {
@@ -77,7 +104,8 @@ exports.people_create_post = [
                 origin: req.body.origin,
                 hair_color: req.body.hair_color,
                 race: req.body.race,
-                ssn_dl: req.body.ssn_dl,
+                ssn: req.body.ssn,
+                dl: req.body.dl,
                 smt: req.body.smt,
                 address: req.body.address,
                 phone_number: req.body.phone_number,
@@ -173,13 +201,41 @@ exports.people_update_get = function (req, res) {
 // Handle People update on POST.
 exports.people_update_post = [
     // Validate and santize fields.
+    body('p_code').trim().isLength({ min: 1 }).escape().withMessage('Family name must be specified.')
+        .isAlphanumeric().withMessage('P code has non-alphanumeric characters.'),
     body('first_name').trim().isLength({ min: 1 }).escape().withMessage('First name must be specified.')
         .isAlphanumeric().withMessage('First name has non-alphanumeric characters.'),
-    body('family_name').trim().isLength({ min: 1 }).escape().withMessage('Family name must be specified.')
-        .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
+    body('middle_intial').trim().isLength({ max: 1 }).escape().withMessage('Middle intial must be specified.')
+        .isAlphanumeric().withMessage('Middle intial has non-alphanumeric characters.'),
+    body('last_name').trim().isLength({ min: 1 }).escape().withMessage('Family name must be specified.')
+        .isAlphanumeric().withMessage('Last name has non-alphanumeric characters.'),
     body('date_of_birth', 'Invalid date of birth').optional({ checkFalsy: true }).isISO8601().toDate(),
     body('date_of_death', 'Invalid date of death').optional({ checkFalsy: true }).isISO8601().toDate(),
-
+    body('origin').trim().isLength({ min: 1 }).escape().withMessage('Family name must be specified.')
+        .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
+    body('hair_color').trim().isLength({ max: 3 }).escape().withMessage('Family name must be specified.')
+        .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
+    body('race').trim().isLength({ min: 1 }).escape().withMessage('Family name must be specified.')
+        .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
+    body('ssn').trim().isLength({ max: 9 }).escape().withMessage('Family name must be specified.')
+        .isAlphanumeric().withMessage('Social security has numeric characters.'),
+    body('dl', 'Invalid expiration date for drivers license').optional({ checkFalsy: true }).isISO8601().toDate(),
+    body('smt').trim().isLength({ min: 1 }).escape().withMessage('Family name must be specified.')
+        .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
+    body('address').trim().isLength({ min: 1 }).escape().withMessage('Family name must be specified.')
+        .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
+    body('phone_number').trim().isLength({ min: 1 }).escape().withMessage('Family name must be specified.')
+        .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
+    body('height').trim().isLength({ max: 3 }).escape().withMessage('Family name must be specified.')
+        .isNumeric().withMessage('Height has numeric characters.'),
+    body('gang_aff').trim().isLength({ min: 1 }).escape().withMessage('Family name must be specified.')
+        .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
+    body('hazard').trim().isLength({ min: 1 }).escape().withMessage('Family name must be specified.')
+        .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
+    body('weight').trim().isLength({ max: 3 }).escape().withMessage('Family name must be specified.')
+        .isNumeric().withMessage('Weight has numeric characters.'),
+    body('eye_color').trim().isLength({ max: 3 }).escape().withMessage('Family name must be specified.')
+        .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
 
     // Process request after validation and sanitization.
     (req, res, next) => {
@@ -199,7 +255,8 @@ exports.people_update_post = [
                 origin: req.body.origin,
                 hair_color: req.body.hair_color,
                 race: req.body.race,
-                ssn_dl: req.body.ssn_dl,
+                ssn: req.body.ssn,
+                dl: req.body.dl,
                 smt: req.body.smt,
                 address: req.body.address,
                 phone_number: req.body.phone_number,

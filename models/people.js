@@ -11,13 +11,14 @@ var PeopleSchema = new Schema(
         last_name: { type: String, required: true, maxlength: 100 },
         date_of_birth: { type: Date, required: true },
         date_of_death: { type: Date, required: false },
-        origin: { type: String, required: true, maxlength: 100 },
-        hair_color: { type: String, required: true, maxlength: 100 },
+        origin: { type: String, required: false, maxlength: 100 },
+        hair_color: { type: String, required: true, maxlength: 3 },
         race: { type: String, required: true, maxlength: 100 },
-        ssn_dl: { type: Number, maxlength: 9 },
+        ssn: { type: Number, maxlength: 9, required: false },
+        dl: { type: Date, required: false },
         smt: { type: String, required: true },
         address: { type: String, required: true, maxlength: 100 },
-        phone_number: { type: String, required: true, maxlength: 100 },
+        phone_number: { type: Number, required: true, maxlength: 10 },
         height: { type: Number, required: true, maxlength: 3 },
         gang_aff: { type: String, maxlength: 100, required: false },
         hazard: { type: String, maxlength: 100, required: false },
@@ -64,9 +65,16 @@ PeopleSchema
 
 // Virtual for Person's social security number
 PeopleSchema
-    .virtual('ssn')
+    .virtual('social')
     .get(function () {
-        return this.ssn_dl;
+        return this.ssn;
+    });
+
+// Virtual for Person's drivers license expiration date
+PeopleSchema
+    .virtual('drivers')
+    .get(function () {
+        return this.dl;
     });
 
 // Virtual for Person's scars, marks, or tatoos
