@@ -3,7 +3,7 @@ var People = require('../models/people');
 var async = require('async');
 
 const { body, validationResult } = require('express-validator');
-// Display list of all BVehicle.
+// Display list of all Vehicle.
 exports.vehicle_list = function (req, res) {
     Vehicle.find()
         .sort([['vehicle_model', 'ascending']])
@@ -61,11 +61,11 @@ exports.vehicle_create_post = [
     body('vehicle_body_type').trim().isLength({ max: 2 }).escape().withMessage('Vehicle body type must be specified.')
         .isAlphanumeric().withMessage('Vehicle body type has alphanumeric characters.'),
     body('vehicle_details').trim().isLength({ min: 1 }).escape().withMessage('Vehicle details must be specified.')
-        .isAlphanumeric().withMessage('Vehicle details has non-alphanumeric characters.'),
+        .isString().withMessage('Vehicle details has non-alphanumeric characters.'),
     body('vehicle_vin').trim().isLength({ min: 1, max: 17 }).escape().withMessage('Vehicle vin must be specified.')
         .isAlphanumeric().withMessage('Vehicle vin has numeric characters.'),
     body('vehicle_registration').trim().isLength({ min: 1 }).escape().withMessage('Vehicle registration must be specified.')
-        .isAlphanumeric().withMessage('Vehicle registration has non-alphanumeric characters.'),
+        .isString().withMessage('Vehicle registration has non-alphanumeric characters.'),
 
     // Process request after validation and sanitization.
     (req, res, next) => {
@@ -73,7 +73,7 @@ exports.vehicle_create_post = [
         // Extract the validation errors from a request.
         const errors = validationResult(req);
 
-        // Create Person object with escaped and trimmed data
+        // Create Vehicle object with escaped and trimmed data
         var vehicle = new Vehicle(
             {
                 plate_number: req.body.plate_number,
@@ -138,15 +138,15 @@ exports.vehicle_delete_post = function (req, res) {
         if (err) { return next(err); }
         // Success.
         if (results.vehicle_people.length > 0) {
-            // Author has books. Render in same way as for GET route.
+            // Render in same way as for GET route.
             res.render('vehicle_delete', { title: 'Delete Vehicle', vehicle: results.vehicle, vehicle_people: results.vehicle_people });
             return;
         }
         else {
-            // Author has no books. Delete object and redirect to the list of authors.
+            // Delete object and redirect to the list of vehicles.
             Vehicle.findByIdAndRemove(req.body.vehicleid, function deleteVehicle(err) {
                 if (err) { return next(err); }
-                // Success - go to author list.
+                // Success - go to vehicle list.
                 res.redirect('/catalog/vehicle')
             })
 
@@ -183,13 +183,12 @@ exports.vehicle_update_post = [
         .isAlphanumeric().withMessage('Vehicle model has alphanumeric characters.'),
     body('vehicle_body_type').trim().isLength({ max: 2}).escape().withMessage('Vehicle body type must be specified.')
         .isAlphanumeric().withMessage('Vehicle body type has alphanumeric characters.'),
-    body('vehicle_details').trim().isLength({ min: 1}).escape().withMessage('Vehicle details must be specified.')
+    body('vehicle_details').trim().isLength({ min: 1 }).escape().withMessage('Vehicle details must be specified.')
         .isAlphanumeric().withMessage('Vehicle details has non-alphanumeric characters.'),
     body('vehicle_vin').trim().isLength({ min: 1, max: 17 }).escape().withMessage('Vehicle vin must be specified.')
         .isAlphanumeric().withMessage('Vehicle vin has numeric characters.'),
     body('vehicle_registration').trim().isLength({ min: 1 }).escape().withMessage('Vehicle registration must be specified.')
         .isAlphanumeric().withMessage('Vehicle registration has non-alphanumeric characters.'),
-
 
     // Process request after validation and sanitization.
     (req, res, next) => {
@@ -197,7 +196,7 @@ exports.vehicle_update_post = [
         // Extract the validation errors from a request.
         const errors = validationResult(req);
 
-        // Create Author object with escaped and trimmed data (and the old id!)
+        // Create Vehicle object with escaped and trimmed data (and the old id!)
         var vehicle = new Vehicle(
             {
                 plate_number: req.body.plate_number,
@@ -222,7 +221,7 @@ exports.vehicle_update_post = [
             // Data from form is valid. Update the record.
             Vehicle.findByIdAndUpdate(req.params.id, vehicle, {}, function (err, thevehicle) {
                 if (err) { return next(err); }
-                // Successful - redirect to genre detail page.
+                // Successful - redirect to vehicle detail page.
                 res.redirect(thevehicle.url);
             });
         }
