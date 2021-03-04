@@ -1,18 +1,45 @@
 extends layout
 
 block content
-
-  div(class='container')
-  div(class='row')
-    div(class='col')
-      //-SSN
-    div(class='col-sm-6')
-      //-First Name - Middle Name - Last Name
+  .row
+    .col
+      p Code #{people.p_code}
+    .col-6
       p #{people.name}
-    div(class='col')
-      //-DOB
-      p #{people.lifespan}
-  div(class='row')
+    .col
+      p SSN/DL #{people.ssn_dl}
+  .row
+    .col
+      img(src='', alt='Person pic')
+    .col
+      p Race #{people.race}
+    .col
+      p Gender #{people.origin}
+    .col
+      p Height #{people.height}
+    .col
+      p Weight #{people.weight}
+    .col
+      p Hair Color #{people.hair_color}
+    .row
+      .col
+        p #{people.lifespan}
+      .col
+        p Eye Color #{people.eye_color}
+  .row
+    .col
+      p Gang Affiliation #{people.gang_aff}
+    .col 
+      p Address #{people.address}
+    .col
+      p Phone Number #{people.phone_number}
+  .row
+    .col
+      p Address #{people.address}
+    .col
+      p Phone Number #{people.phone_number}
+  .row
+    p Scars/Marks/Tattoos #{people.smt}
     
     
 
@@ -23,7 +50,8 @@ block content
       dl
         each vehicle in people_vehicles
           dt
-            a(href=vehicle.url) #{vehicle.summary}
+            a(href=vehicle.url) #{vehicle.model}
+          dd #{vehicle.make}
 
         else
           p This person has no vehicle associated with them.
