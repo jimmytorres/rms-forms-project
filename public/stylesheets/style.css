@@ -1,22 +1,21 @@
 html {
   background-color: #5F5C5C;
-  height: 100%;
 }
 
 body {
   background-color: #5F5C5C;
-  color: #2D9AB1;
+  color: #92140C;
 }
 
 .main-container{
   background-color: #C4C4C4;
-  color: #2D9AB1;
+  color: #92140C;
   text-align: center;
 }
 
-.col-sm-10{
+.col-sm-2{
   background-color: #c4c4c4;
-  color: #2D9AB1;
+  color: #92140C;
 }
 
 .sidebar-nav {
@@ -24,12 +23,12 @@ body {
   margin-top: 20px;
   padding: 0;
   list-style: none;
-  color: #2D9AB1;
+  color: #92140C;
 }
 
 .counter-color{
   background-color: #5F5C5C;
   text-decoration: none;
   list-style: none;
-  color: #2D9AB1;
+  color: #92140C;
 }

@@ -7,7 +7,12 @@ block content
       .form-group
         label(for='p_code') Code:
         input#p_code.form-control(type='text', placeholder='Victim' name='p_code' required='true' value=(undefined===people ? '' : people.p_code) )
-    .col-6
+    .col
+      .form-group
+        label(for='ssn') Social Security Number:
+        input#ssn.form-control(type='text', placeholder='SSN' name='ssn' required='false' value=(undefined===people ? '' : people.ssn) )
+  .row
+    .col
       .form-group
         label(for='first_name') First Name:
         input#first_name.form-control(type='text', placeholder='First name (Christian)' name='first_name' required='true' value=(undefined===people ? '' : people.first_name) )
@@ -15,10 +20,6 @@ block content
         input#middle_intial.form-control(type='text', placeholder='Middle Intial (M)' name='middle_intial' required='true' value=(undefined===people ? '' : people.middle_intial) )
         label(for='last_name') Last Name:
         input#last_name.form-control(type='text', placeholder='Last name (Surname)' name='last_name' required='true' value=(undefined===people ? '' : people.last_name) )
-    .col
-      .form-group
-        label(for='ssn') Social Security Number:
-        input#ssn.form-control(type='text', placeholder='SSN' name='ssn' required='false' value=(undefined===people ? '' : people.ssn) )
   .row
     .col
       img(src='', alt='Person pic')
