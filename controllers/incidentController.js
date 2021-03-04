@@ -57,12 +57,12 @@ exports.incident_detail = function (req, res, next) {
 
 };
 
-// Display BookInstance create form on GET.
+// Display incident create form on GET.
 exports.incident_create_get = function (req, res, next) {
     res.render('incident_form', { title: 'Create Incident' });
 };
 
-// Handle BookInstance create on POST.
+// Handle incident create on POST.
 exports.incident_create_post = [
 
     // Validate and sanitize fields.
@@ -81,7 +81,7 @@ exports.incident_create_post = [
         // Extract the validation errors from a request.
         const errors = validationResult(req);
 
-        // Create Person object with escaped and trimmed data
+        // Create incident object with escaped and trimmed data
         var incident = new Incident(
             {
                 formid: req.body.formid,
@@ -107,14 +107,14 @@ exports.incident_create_post = [
             // Save incident.
             incident.save(function (err) {
                 if (err) { return next(err); }
-                // Successful - redirect to new author record.
+                // Successful - redirect to new incident record.
                 res.redirect(incident.url);
             });
         }
     }
 ];
 
-// Display BookInstance delete form on GET.
+// Display incident delete form on GET.
 exports.incident_delete_get = function (req, res) {
     async.parallel({
         incident: function (callback) {
@@ -130,7 +130,7 @@ exports.incident_delete_get = function (req, res) {
     });
 };
 
-// Handle BookInstance delete on POST.
+// Handle incident delete on POST.
 exports.incident_delete_post = function (req, res) {
     // Assume the post has valid id (ie no validation/sanitization).
 
@@ -142,10 +142,10 @@ exports.incident_delete_post = function (req, res) {
         if (err) { return next(err); }
         // Success
         else {
-            // Book has no BookInstance objects. Delete object and redirect to the list of books.
+            // Delete object and redirect to the list of books.
             Incident.findByIdAndRemove(req.body.id, function deleteIncident(err) {
                 if (err) { return next(err); }
-                // Success - got to books list.
+                // Success - got to incident list.
                 res.redirect('/catalog/incidents');
             });
 
@@ -153,9 +153,9 @@ exports.incident_delete_post = function (req, res) {
     });
 };
 
-// Display BookInstance update form on GET.
+// Display incident update form on GET.
 exports.incident_update_get = function (req, res) {
-    // Get book, authors and genres for form.
+    // Get incident, people and vehicle for form.
     async.parallel({
         incident: function (callback) {
             Incident.findById(req.params.id).populate('people').populate('vehicle').exec(callback);
@@ -177,7 +177,7 @@ exports.incident_update_get = function (req, res) {
     });
 };
 
-// Handle bookinstance update on POST.
+// Handle incident update on POST.
 exports.incident_update_post = [
 
     // Validate and santitize fields.
@@ -191,7 +191,7 @@ exports.incident_update_post = [
         // Extract the validation errors from a request.
         const errors = validationResult(req);
 
-        // Create a Book object with escaped/trimmed data and old id.
+        // Create a incident object with escaped/trimmed data and old id.
         var incident = new Incident(
             {
                 formid: req.body.formid,
@@ -209,7 +209,7 @@ exports.incident_update_post = [
         if (!errors.isEmpty()) {
             // There are errors. Render form again with sanitized values/error messages.
 
-            // Get all authors and genres for form
+            // Get all people and vehicle for form
             async.parallel({
                 people: function (callback) {
                     People.find(callback);
@@ -227,7 +227,7 @@ exports.incident_update_post = [
             // Data from form is valid. Update the record.
             Incident.findByIdAndUpdate(req.params.id, incident, {}, function (err, theincident) {
                 if (err) { return next(err); }
-                // Successful - redirect to book detail page.
+                // Successful - redirect to incident detail page.
                 res.redirect(theincident.url);
             });
         }

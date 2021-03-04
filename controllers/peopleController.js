@@ -125,10 +125,10 @@ exports.people_create_post = [
         else {
             // Data from form is valid.
 
-            // Save person.
+            // Save Person.
             people.save(function (err) {
                 if (err) { return next(err); }
-                // Successful - redirect to new person record.
+                // Successful - redirect to new Person record.
                 res.redirect(people.url);
             });
         }
@@ -167,12 +167,12 @@ exports.people_delete_post = function (req, res) {
         if (err) { return next(err); }
         // Success.
         if (results.people_vehicle.length > 0) {
-            // Author has books. Render in same way as for GET route.
+            // Person has vehicle. Render in same way as for GET route.
             res.render('people_delete', { title: 'Delete Person', people: results.people, people_vehicle: results.people_vehicle });
             return;
         }
         else {
-            // Author has no books. Delete object and redirect to the list of authors.
+            // Person has no vehicle. Delete object and redirect to the list of People.
             People.findByIdAndRemove(req.body.peopleid, function deletePeople(err) {
                 if (err) { return next(err); }
                 // Success - go to author list.
@@ -243,7 +243,7 @@ exports.people_update_post = [
         // Extract the validation errors from a request.
         const errors = validationResult(req);
 
-        // Create Author object with escaped and trimmed data (and the old id!)
+        // Create People object with escaped and trimmed data (and the old id!)
         var people = new People(
             {
                 p_code: req.body.pcode,
@@ -278,7 +278,7 @@ exports.people_update_post = [
             // Data from form is valid. Update the record.
             People.findByIdAndUpdate(req.params.id, people, {}, function (err, thepeople) {
                 if (err) { return next(err); }
-                // Successful - redirect to genre detail page.
+                // Successful - redirect to People detail page.
                 res.redirect(thepeople.url);
             });
         }
