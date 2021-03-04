@@ -1,34 +1,25 @@
-html {
-  background-color: #5F5C5C;
+h1{
+  color: #4F8CC9;
 }
 
-body {
-  background-color: #5F5C5C;
-  color: #92140C;
+p{
+  color: #4F8CC9;
 }
 
 .main-container{
-  background-color: #C4C4C4;
-  color: #92140C;
   text-align: center;
-}
-
-.col-sm-2{
-  background-color: #c4c4c4;
-  color: #92140C;
+  color: #4F8CC9;
 }
 
 .sidebar-nav {
-  background-color: #C4C4C4; 
   margin-top: 20px;
   padding: 0;
   list-style: none;
-  color: #92140C;
+  color: #4F8CC9;
 }
 
 .counter-color{
-  background-color: #5F5C5C;
   text-decoration: none;
   list-style: none;
-  color: #92140C;
+  color: #4F8CC9
 }
