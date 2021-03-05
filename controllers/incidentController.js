@@ -150,7 +150,7 @@ exports.incident_delete_post = function (req, res) {
             Incident.findByIdAndRemove(req.body.id, function deleteIncident(err) {
                 if (err) { return next(err); }
                 // Success - got to incident list.
-                res.redirect('/catalog/incidents');
+                res.redirect('/catalog/incident');
             });
 
         }
