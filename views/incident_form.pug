@@ -2,47 +2,48 @@ extends layout
 
 block content
   form(method='POST' action='')
-  .row
-    .col
-      .form-group
+  div.row
+    div.col
+      div.form-group
         label(for='formid') Form Id:
-        input#formid.form-control(type='text', placeholder='2021-001' name='formid' required='true' value=(undefined===incident ? '' : incident.formid) )
-    .col-6
+        input#formid.form-control(type='text' placeholder='2021-001' name='formid' required='true' value=(undefined===incident ? '' : incident.formid) )
+    div.col-6
       p Police Report
-  .row
-    .col
-      .form-group
+  div.row
+    div.col
+      div.form-group
         label(for='occurrenceDate') Occurence Date:
-        input#occurrenceDate.form-control(type='text', placeholder='01/01/2021' name='occurrenceDate' required='true' value=(undefined===incident ? '' : incident.occurence_date) )
-    .col
-      .form-group
+        input#occurrenceDate.form-control(type='text' placeholder='01/01/2021' name='occurrenceDate' required='true' value=(undefined===incident ? '' : incident.occurence_date) )
+    div.col
+      div.form-group
         label(for='occurrenceTime') Occurence Time:
-        input#occurrenceTime.form-control(type='textarea', placeholder='12:14' name='occurrenceTime' value=(undefined===incident ? '' : incident.occurrenceTime) required='true')
-    .col-6
-      .form-group
+        input#occurrenceTime.form-control(type='textarea' placeholder='12:14' name='occurrenceTime' value=(undefined===incident ? '' : incident.occurrenceTime) required='true')
+    div.col-6
+      div.form-group
         label(for='incidentType') Incident Type:
-        input#incidentType.form-control(type='textarea', placeholder='incident Type' name='incidentType' value=(undefined===incident ? '' : incident.incidentType) required='true')
-  .row
-    .col
-      .form-group
+        input#incidentType.form-control(type='textarea' placeholder='incident Type' name='incidentType' value=(undefined===incident ? '' : incident.incidentType) required='true')
+  div.row
+    div.col
+      div.form-group
         label(for='location') Location:
-        input#location.form-control(type='text', placeholder='Location' name='location' value=(undefined===incident ? '' : incident.location) required='true')
-    .col
-      .form-group
+        input#location.form-control(type='text' placeholder='Location' name='location' value=(undefined===incident ? '' : incident.location) required='true')
+    div.col
+      div.form-group
         label(for='locationCommon') Location Common Name:
-        input#locationCommon.form-control(type='textarea', placeholder='Common Name For Location' name='locationCommon' value=(undefined===incident ? '' : incident.locationCommon) required='true')
-  .row
-    .form-group
+        input#locationCommon.form-control(type='textarea' placeholder='Common Name For Location' name='locationCommon' value=(undefined===incident ? '' : incident.locationCommon) required='true')
+  div.row
+    div.form-group
       label(for='addPeople') Add Person:
-      input#addPeople.form-control(type='textarea', placeholder='Add People' name='addPeople' value=(undefined===incident ? '' : incident.addPeople) required='true')
-  .row
-    .form-group
+      input#addPeople.form-control(type='textarea' placeholder='Add People' name='addPeople' value=(undefined===incident ? '' : incident.addPeople) required='true')
+  div.row
+    div.form-group
       label(for='addVehicle') Add Vehicle:
-      input#addVehicle.form-control(type='textarea', placeholder='Add Vehicle' name='addVehicle' value=(undefined===incident ? '' : incident.addVehicle) required='true')
-  .row
-    .form-group
+      input#addVehicle.form-control(type='textarea' placeholder='Add Vehicle' name='addVehicle' value=(undefined===incident ? '' : incident.addVehicle) required='true')
+  div.row
+    div.form-group
       label(for='narrative') Narrative:
-      input#narrative.form-control(type='textarea', placeholder='Narrative' name='narrative' value=(undefined===incident ? '' : incident.narrative) required='true')
+      input#narrative.form-control(type='textarea' placeholder='Narrative' name='narrative' value=(undefined===incident ? '' : incident.narrative) required='true')
+  div.row
     button.btn.btn-primary(type='submit') Submit
 
   if errors 

@@ -21,5 +21,14 @@ p{
 .counter-color{
   text-decoration: none;
   list-style: none;
-  color: #4F8CC9
+  color: #4F8CC9;
+}
+
+.form-group{
+  color: #4f8cc9;
+}
+
+#border{
+  border: 1px solid #4F8CC9;
+  text-align: center;
 }
