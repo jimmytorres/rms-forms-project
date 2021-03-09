@@ -7,7 +7,7 @@ block content
     each incident in incident_list
       li
         a(href=incident.url) #{incident.incident_id}
-        //|  (#{incident})
+        |  (#{incident})
 
     else
       li There are no incidents.
