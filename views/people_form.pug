@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  form(method='POST' action='')
+  form(method='POST' action='').border
   div.row
     div.col
       div.form-group
@@ -62,11 +62,11 @@ block content
     div.col 
       div.form-group
         label(for='address') Address:
-        input#address.form-control(type='text', placeholder='11111 W Street dr' name='address' required='true' value=(undefined===people ? '' : people.address) )
+        input#adress.form-control(type='text', placeholder='11111 W Street dr' name='address' required='true' value=(undefined===people ? '' : people.address) )
     div.col
       div.form-group
         label(for='phone_number') Phone Number:
-        input#phone_number.form-control(type='text', placeholder='111-111-1111' name='phone_number' required='true' value=(undefined===people ? '' : people.phone_number) )
+        input#phoneNumber.form-control(type='text', placeholder='111-111-1111' name='phone_number' required='true' value=(undefined===people ? '' : people.phone_number) )
   div.row
     div.col
       div.form-group
@@ -75,11 +75,11 @@ block content
     div.col
       div.form-group
         label(for='address') Address:
-        input#address.form-control(type='text', placeholder='11111 W Street dr' name='address' required='true' value=(undefined===people ? '' : people.address) )
+        input#adress.form-control(type='text', placeholder='11111 W Street dr' name='address' required='true' value=(undefined===people ? '' : people.address) )
     div.col
       div.form-group
         label(for='phone_number') Phone Number:
-        input#phone_number.form-control(type='text', placeholder='111-111-1111' name='phone_number' required='true' value=(undefined===people ? '' : people.phone_number) )
+        input#phoneNumber.form-control(type='text', placeholder='111-111-1111' name='phone_number' required='true' value=(undefined===people ? '' : people.phone_number) )
   div.row
     div.col
       div.form-group
