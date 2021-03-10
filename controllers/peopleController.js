@@ -50,41 +50,42 @@ exports.people_create_get = function (req, res, next) {
 exports.people_create_post = [
 
     // Validate and sanitize fields.
-    body('p_code').trim().isLength({ min: 1 }).escape().withMessage('Family name must be specified.')
-        .isAlphanumeric().withMessage('P code has non-alphanumeric characters.'),
+    body('p_code').trim().isLength({ min: 1 }).escape().withMessage('Person Code must be specified.')
+        .isAlphanumeric().withMessage('Person code has non-alphanumeric characters.'),
     body('first_name').trim().isLength({ min: 1 }).escape().withMessage('First name must be specified.')
         .isAlphanumeric().withMessage('First name has non-alphanumeric characters.'),
     body('middle_intial').trim().isLength({ max: 1 }).escape().withMessage('Middle intial must be specified.')
         .isAlphanumeric().withMessage('Middle intial has non-alphanumeric characters.'),
-    body('last_name').trim().isLength({ min: 1 }).escape().withMessage('Family name must be specified.')
+    body('last_name').trim().isLength({ min: 1 }).escape().withMessage('Last name must be specified.')
         .isAlphanumeric().withMessage('Last name has non-alphanumeric characters.'),
     body('date_of_birth', 'Invalid date of birth').optional({ checkFalsy: true }).isISO8601().toDate(),
     body('date_of_death', 'Invalid date of death').optional({ checkFalsy: true }).isISO8601().toDate(),
-    body('origin').trim().isLength({ min: 1 }).escape().withMessage('Family name must be specified.')
-        .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
-    body('hair_color').trim().isLength({ max: 3 }).escape().withMessage('Family name must be specified.')
-        .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
-    body('race').trim().isLength({ min: 1 }).escape().withMessage('Family name must be specified.')
-        .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
-    body('ssn').trim().isLength({ max: 9 }).escape().withMessage('Family name must be specified.')
+    body('origin').trim().isLength({ min: 1 }).escape().withMessage('Origin must be specified.')
+        .isAlphanumeric().withMessage('Origin has non-alphanumeric characters.'),
+    body('hair_color').trim().isLength({ max: 3 }).escape().withMessage('Hair color must be specified.')
+        .isAlphanumeric().withMessage('Hair color has non-alphanumeric characters.'),
+    body('race').trim().isLength({ min: 1 }).escape().withMessage('Race  must be specified.')
+        .isAlphanumeric().withMessage('Race has non-alphanumeric characters.'),
+    body('ssn').trim().isLength({ max: 9 }).escape().withMessage('Social security must be specified.')
         .isAlphanumeric().withMessage('Social security has numeric characters.'),
-    body('dl', 'Invalid expiration date for drivers license').optional({ checkFalsy: false }).isISO8601().toDate(),
-    body('smt').trim().isLength({ min: 1 }).escape().withMessage('Family name must be specified.')
-        .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
-    body('address').trim().isLength({ min: 1 }).escape().withMessage('Family name must be specified.')
-        .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
-    body('phone_number').trim().isLength({ min: 1 }).escape().withMessage('Family name must be specified.')
-        .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
-    body('height').trim().isLength({ max: 3 }).escape().withMessage('Family name must be specified.')
+    body('dl').trim().isLength({ max: 9 }).escape().withMessage('Driver License must be specified.')
+        .isAlphanumeric().withMessage('Driver License has alphanumeric characters.'),
+    body('smt').trim().isLength({ min: 1 }).escape().withMessage('Scars Marks and Tatoos must be specified.')
+        .isAlphanumeric().withMessage('Scars Marks and Tatoos has non-alphanumeric characters.'),
+    body('address').trim().isLength({ min: 1 }).escape().withMessage('Address must be specified.')
+        .isAlphanumeric().withMessage('Address has non-alphanumeric characters.'),
+    body('phone_number').trim().isLength({ min: 1 }).escape().withMessage('Phone number must be specified.')
+        .isAlphanumeric().withMessage('Phone number has non-alphanumeric characters.'),
+    body('height').trim().isLength({ max: 3 }).escape().withMessage('Height must be specified.')
         .isNumeric().withMessage('Height has numeric characters.'),
-    body('gang_aff').trim().isLength({ min: 1 }).escape().withMessage('Family name must be specified.')
-        .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
-    body('hazard').trim().isLength({ min: 1 }).escape().withMessage('Family name must be specified.')
-        .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
-    body('weight').trim().isLength({ max: 3 }).escape().withMessage('Family name must be specified.')
+    body('gang_aff').trim().isLength({ min: 1 }).escape().withMessage('Gang Affilation must be specified.')
+        .isAlphanumeric().withMessage('Gang Affilation has non-alphanumeric characters.'),
+    body('hazard').trim().isLength({ min: 1 }).escape().withMessage('Hazard must be specified.')
+        .isAlphanumeric().withMessage('Hazard has non-alphanumeric characters.'),
+    body('weight').trim().isLength({ max: 3 }).escape().withMessage('Weight must be specified.')
         .isNumeric().withMessage('Weight has numeric characters.'),
-    body('eye_color').trim().isLength({ max: 3 }).escape().withMessage('Family name must be specified.')
-        .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
+    body('eye_color').trim().isLength({ max: 3 }).escape().withMessage('Eye color must be specified.')
+        .isAlphanumeric().withMessage('Eye color has non-alphanumeric characters.'),
 
     // Process request after validation and sanitization.
     (req, res, next) => {
@@ -224,7 +225,7 @@ exports.people_update_post = [
     body('smt').trim().isLength({ min: 1 }).escape().withMessage('Scars Marks and Tatoos must be specified.')
         .isAlphanumeric().withMessage('Scars Marks and Tatoos has non-alphanumeric characters.'),
     body('address').trim().isLength({ min: 1 }).escape().withMessage('Address must be specified.')
-        .isAlphanumeric().withMessage('Address has non-alphanumeric characters.'),
+        .isPostalCode().withMessage('Address has non-alphanumeric characters.'),
     body('phone_number').trim().isLength({ min: 1 }).escape().withMessage('Phone number must be specified.')
         .isAlphanumeric().withMessage('Phone number has non-alphanumeric characters.'),
     body('height').trim().isLength({ max: 3 }).escape().withMessage('Height must be specified.')

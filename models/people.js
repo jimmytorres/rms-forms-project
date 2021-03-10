@@ -85,11 +85,11 @@ PeopleSchema
     });
 
 // Virtual for Person's address
-PeopleSchema
-    .virtual('adress')
-    .get(function () {
-        return this.address;
-    });
+// PeopleSchema
+//     .virtual('adress')
+//     .get(function () {
+//         return this.address;
+//     });
 
 // Virtual for Person's phone number
 PeopleSchema
