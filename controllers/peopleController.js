@@ -73,7 +73,7 @@ exports.people_create_post = [
     body('smt').trim().isLength({ min: 1 }).escape().withMessage('Scars Marks and Tatoos must be specified.')
         .isAlphanumeric().withMessage('Scars Marks and Tatoos has non-alphanumeric characters.'),
     body('address').trim().isLength({ min: 1 }).escape().withMessage('Address must be specified.')
-        .isAlphanumeric().withMessage('Address has non-alphanumeric characters.'),
+        .isString().withMessage('Address non-alphanumeric characters.'),
     body('phone_number').trim().isLength({ min: 1 }).escape().withMessage('Phone number must be specified.')
         .isAlphanumeric().withMessage('Phone number has non-alphanumeric characters.'),
     body('height').trim().isLength({ max: 3 }).escape().withMessage('Height must be specified.')
@@ -96,7 +96,7 @@ exports.people_create_post = [
         // Create Person object with escaped and trimmed data
         var people = new People(
             {
-                p_code: req.body.pcode,
+                p_code: req.body.p_code,
                 first_name: req.body.first_name,
                 middle_intial: req.body.middle_intial,
                 last_name: req.body.last_name,
@@ -225,7 +225,7 @@ exports.people_update_post = [
     body('smt').trim().isLength({ min: 1 }).escape().withMessage('Scars Marks and Tatoos must be specified.')
         .isAlphanumeric().withMessage('Scars Marks and Tatoos has non-alphanumeric characters.'),
     body('address').trim().isLength({ min: 1 }).escape().withMessage('Address must be specified.')
-        .isPostalCode().withMessage('Address has non-alphanumeric characters.'),
+        .isString().withMessage('Address non-alphanumeric characters.'),
     body('phone_number').trim().isLength({ min: 1 }).escape().withMessage('Phone number must be specified.')
         .isAlphanumeric().withMessage('Phone number has non-alphanumeric characters.'),
     body('height').trim().isLength({ max: 3 }).escape().withMessage('Height must be specified.')
@@ -248,7 +248,7 @@ exports.people_update_post = [
         // Create People object with escaped and trimmed data (and the old id!)
         var people = new People(
             {
-                p_code: req.body.pcode,
+                p_code: req.body.p_code,
                 first_name: req.body.first_name,
                 middle_intial: req.body.middle_intial,
                 last_name: req.body.last_name,
