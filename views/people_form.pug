@@ -2,97 +2,99 @@ extends layout
 
 block content
   form(method='POST' action='').border
-  div.row
-    div.col
-      div.form-group
-        label(for='p_code') Code:
-        input#p_code.form-control(type='text', placeholder='Victim' name='p_code' required='true' value=(undefined===people ? '' : people.p_code) )
-    div.col
-      div.form-group
-        label(for='ssn') Social Security Number:
-        input#ssn.form-control(type='text', placeholder='SSN' name='ssn' required='false' value=(undefined===people ? '' : people.ssn) )
-  div.row
-    div.col
-      div.form-group
-        label(for='first_name') First Name:
-        input#first_name.form-control(type='text', placeholder='First name (Christian)' name='first_name' required='true' value=(undefined===people ? '' : people.first_name) )
-        label(for='middle_intial') Middle Intial:
-        input#middle_intial.form-control(type='text', placeholder='Middle Intial (M)' name='middle_intial' required='true' value=(undefined===people ? '' : people.middle_intial) )
-        label(for='last_name') Last Name:
-        input#last_name.form-control(type='text', placeholder='Last name (Surname)' name='last_name' required='true' value=(undefined===people ? '' : people.last_name) )
-  div.row
-    div.col
-      img(src='', alt='Person pic')
-    div.col
-      div.form-group
-        label(for='race') Race:
-        input#race.form-control(type='text', placeholder='Race' name='race' required='true' value=(undefined===people ? '' : people.race) )
-    div.col
-      div.form-group
-        label(for='origin') Origin:
-        input#origin.form-control(type='text', placeholder='Origin' name='origin' required='true' value=(undefined===people ? '' : people.origin) )
-    div.col
-      div.form-group
-        label(for='height') Height:
-        input#height.form-control(type='text', placeholder='Height' name='height' required='true' value=(undefined===people ? '' : people.height) )
-    div.col
-      div.form-group
-        label(for='weight') Weight:
-        input#weight_color.form-control(typr='text', placeholder='Weight' name='weight' required='true' value=(undefined===people ? '' : people.weight) )
-    div.col
-      div.form-group
-        label(for='hair_color') Hair Color:
-        input#hair_color.form-control(type='text', placeholder='Hair Color' name='hair_color' required='true' value=(undefined===people ? '' : people.hair_color) )
     div.row
       div.col
         div.form-group
-          label(for='date_of_birth') Date of birth:
-          input#date_of_birth.form-control(type='date', name='date_of_birth' value=(undefined===people ? '' : people.date_of_birth_yyyy_mm_dd) )
-          label(for='date_of_death') Date of death:
-          input#date_of_death.form-control(type='date', name='date_of_death' value=(undefined===people ? '' : people.date_of_death_yyyy_mm_dd) )
+          label(for='p_code') Code:
+          input#p_code.form-control(type='text', placeholder='Victim' name='p_code' required='true' value=(undefined===people ? '' : people.p_code) )
       div.col
         div.form-group
-          label(for='eye_color') Eye Color:
-          input#eye_color.form-control(type='text', placeholder='Eye Color' name='eye_color' required='true' value=(undefined===people ? '' : people.eye_color) )
-  div.row
-    div.col
-      div.form-group
-        label(for='gang_aff') Gang Affiliation:
-        input#gang_aff.form-control(type='text', placeholder='Gang Affiliation' name='gang_aff' required='true' value=(undefined===people ? '' : people.gang_aff) )
-    div.col 
-      div.form-group
-        label(for='address') Address:
-        input#address.form-control(type='text', placeholder='11111 W Street dr' name='address' required='true' value=(undefined===people ? '' : people.address) )
-    div.col
-      div.form-group
-        label(for='phone_number') Phone Number:
-        input#phonenumber.form-control(type='text', placeholder='111-111-1111' name='phone_number' required='true' value=(undefined===people ? '' : people.phone_number) )
-  div.row
-    div.col
-      div.form-group
-        label(for='dl') Driver's Licence:
-        input#dl.form-control(type='text', placeholder='Drivers licence' name='dl' required='false' value=(undefined===people ? '' : people.dl) )
-    div.col
-      div.form-group
-        label(for='address') Address:
-        input#ad.form-control(type='text', placeholder='11111 W Street dr' name='address' required='true' value=(undefined===people ? '' : people.address) )
-    div.col
-      div.form-group
-        label(for='phone_number') Phone Number:
-        input#pn.form-control(type='text', placeholder='111-111-1111' name='phone_number' required='true' value=(undefined===people ? '' : people.phone_number) )
-  div.row
-    div.col
-      div.form-group
-        label(for='smt') Scars, Marks and Tattoos:
-        input#smt.form-control(type='text', placeholder='Scars/Marks/Tattoos' name='smt' required='true' value=(undefined===people ? '' : people.smt) )
-    div.col
-      div.form-group
-        label(for='hazard') HAZARD:
-        input#hazard.form-control(type='text', placeholder='HAZARD' name='hazard' required='true' value=(undefined===people ? '' : people.hazard) )
-  div.row
-    button.btn.btn-primary(type='submit') Submit
+          label(for='ssn') Social Security Number:
+          input#ssn.form-control(type='text', placeholder='SSN' name='ssn' required='false' value=(undefined===people ? '' : people.ssn) )
+    div.row
+      div.col
+        div.form-group
+          label(for='first_name') First Name:
+          input#first_name.form-control(type='text', placeholder='First name (Christian)' name='first_name' required='true' value=(undefined===people ? '' : people.first_name) )
+          label(for='middle_intial') Middle Intial:
+          input#middle_intial.form-control(type='text', placeholder='Middle Intial (M)' name='middle_intial' required='true' value=(undefined===people ? '' : people.middle_intial) )
+          label(for='last_name') Last Name:
+          input#last_name.form-control(type='text', placeholder='Last name (Surname)' name='last_name' required='true' value=(undefined===people ? '' : people.last_name) )
+    div.row
+      div.col
+        img(src='', alt='Person pic')
+      div.col
+        div.form-group
+          label(for='race') Race:
+          input#race.form-control(type='text', placeholder='Race' name='race' required='true' value=(undefined===people ? '' : people.race) )
+      div.col
+        div.form-group
+          label(for='origin') Origin:
+          input#origin.form-control(type='text', placeholder='Origin' name='origin' required='true' value=(undefined===people ? '' : people.origin) )
+      div.col
+        div.form-group
+          label(for='height') Height:
+          input#height.form-control(type='text', placeholder='Height' name='height' required='true' value=(undefined===people ? '' : people.height) )
+      div.col
+        div.form-group
+          label(for='weight') Weight:
+          input#weight_color.form-control(typr='text', placeholder='Weight' name='weight' required='true' value=(undefined===people ? '' : people.weight) )
+      div.col
+        div.form-group
+          label(for='hair_color') Hair Color:
+          input#hair_color.form-control(type='text', placeholder='Hair Color' name='hair_color' required='true' value=(undefined===people ? '' : people.hair_color) )
+      div.row
+        div.col
+          div.form-group
+            label(for='date_of_birth') Date of birth:
+            input#date_of_birth.form-control(type='date', name='date_of_birth' value=(undefined===people ? '' : people.date_of_birth_yyyy_mm_dd) )
+            label(for='date_of_death') Date of death:
+            input#date_of_death.form-control(type='date', name='date_of_death' value=(undefined===people ? '' : people.date_of_death_yyyy_mm_dd) )
+        div.col
+          div.form-group
+            label(for='eye_color') Eye Color:
+            input#eye_color.form-control(type='text', placeholder='Eye Color' name='eye_color' required='true' value=(undefined===people ? '' : people.eye_color) )
+    div.row
+      div.col
+        div.form-group
+          label(for='gang_aff') Gang Affiliation:
+          input#gang_aff.form-control(type='text', placeholder='Gang Affiliation' name='gang_aff' required='true' value=(undefined===people ? '' : people.gang_aff) )
+      div.col 
+        div.form-group
+          label(for='address') Address:
+          input#address.form-control(type='text', placeholder='11111 W Street dr' name='address' required='true' value=(undefined===people ? '' : people.address) )
+      div.col
+        div.form-group
+          label(for='phone_number') Phone Number:
+          input#phonenumber.form-control(type='text', placeholder='111-111-1111' name='phone_number' required='true' value=(undefined===people ? '' : people.phone_number) )
+    div.row
+      div.col
+        div.form-group
+          label(for='dl') Driver's Licence:
+          input#dl.form-control(type='text', placeholder='Drivers licence' name='dl' required='false' value=(undefined===people ? '' : people.dl) )
+      div.col
+        div.form-group
+          label(for='address') Address:
+          input#ad.form-control(type='text', placeholder='11111 W Street dr' name='address' required='true' value=(undefined===people ? '' : people.address) )
+      div.col
+        div.form-group
+          label(for='phone_number') Phone Number:
+          input#pn.form-control(type='text', placeholder='111-111-1111' name='phone_number' required='true' value=(undefined===people ? '' : people.phone_number) )
+    div.row
+      div.col
+        div.form-group
+          label(for='smt') Scars, Marks and Tattoos:
+          input#smt.form-control(type='text', placeholder='Scars/Marks/Tattoos' name='smt' required='true' value=(undefined===people ? '' : people.smt) )
+      div.col
+        div.form-group
+          label(for='hazard') HAZARD:
+          input#hazard.form-control(type='text', placeholder='HAZARD' name='hazard' required='true' value=(undefined===people ? '' : people.hazard) )
+    div.row
+      div.col
+        div.form-group
+          button.btn.btn-primary(type='submit') Submit
 
-  if errors 
-    ul
-      for error in errors
-        li!= error.msg
+    if errors 
+      ul
+        for error in errors
+          li!= error.msg

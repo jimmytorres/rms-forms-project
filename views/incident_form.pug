@@ -1,56 +1,61 @@
 extends layout
+
 block content
   h1=title
   script(src="/javascripts/formdup.js")
   form(method='POST' action='') 
-  section#mores
-    div.row
-    div.col
-      div.form-group
-        label(for='formid') Form Id:
-        input#formid.form-control(type='text' placeholder='2021-001' name='formid' required='true' value=(undefined===incident ? '' : incident.formid) )
-    div.col-6
-      p Police Report
-    div.row
-    div.col
-      div.form-group
-        label(for='occurrenceDate') Occurence Date:
-        input#occurrenceDate.form-control(type='text' placeholder='01/01/2021' name='occurrenceDate' required='true' value=(undefined===incident ? '' : incident.occurence_date) )
-    div.col
-      div.form-group
-        label(for='occurrenceTime') Occurence Time:
-        input#occurrenceTime.form-control(type='textarea' placeholder='12:14' name='occurrenceTime' value=(undefined===incident ? '' : incident.occurrenceTime) required='true')
-    div.col-6
-      div.form-group
-        label(for='incidentType') Incident Type:
-        input#incidentType.form-control(type='textarea' placeholder='incident Type' name='incidentType' value=(undefined===incident ? '' : incident.incidentType) required='true')
-    div.row
-      div.col
-        div.form-group
-          label(for='location') Location:
-          input#location.form-control(type='text' placeholder='Location' name='location' value=(undefined===incident ? '' : incident.location) required='true')
-      div.col
-        div.form-group
-          label(for='locationCommon') Location Common Name:
-          input#locationCommon.form-control(type='textarea' placeholder='Common Name For Location' name='locationCommon' value=(undefined===incident ? '' : incident.locationCommon) required='true')
-    div.row
-      div.form-group
-        label(for='addPeople') Add Person:
-        input#addPeople.form-control(type='textarea' placeholder='Add People' name='addPeople' value=(undefined===incident ? '' : incident.addPeople) required='true')
-    div.row
-      div.form-group
-        label(for='addVehicle') Add Vehicle:
-        input#addVehicle.form-control(type='textarea' placeholder='Add Vehicle' name='addVehicle' value=(undefined===incident ? '' : incident.addVehicle) required='true')
-    div.row
-      div.form-group
-        label(for='narrative') Narrative:
-        input#narrative.form-control(type='textarea' placeholder='Narrative' name='narrative' value=(undefined===incident ? '' : incident.narrative) required='true')
-    div.row
-    button(onclick='moreFields()') +  
-  section#new 
-    input#RemovePersonButton(type='button' value='-' onclick='this.parentNode.parentNode.removeChild(this.parentNode);')
-  button.btn.btn-primary(type='submit') Submit
-  if errors
-    ul
-      for error in errors
-        li!= error.msg
+    section#mores
+      div.row
+        div.col
+          div.form-group
+            label(for='formid') Form Id:
+            input#formid.form-control(type='text' placeholder='2021-001' name='formid' required='true' value=(undefined===incident ? '' : incident.formid) )
+      div.col-6
+        p Police Report
+      div.row
+        div.col
+          div.form-group
+            label(for='occurrenceDate') Occurence Date:
+            input#occurrenceDate.form-control(type='text' placeholder='01/01/2021' name='occurrenceDate' required='true' value=(undefined===incident ? '' : incident.occurence_date) )
+        div.col
+          div.form-group
+            label(for='occurrenceTime') Occurence Time:
+            input#occurrenceTime.form-control(type='textarea' placeholder='12:14' name='occurrenceTime' value=(undefined===incident ? '' : incident.occurrenceTime) required='true')
+        div.col-6
+          div.form-group
+            label(for='incidentType') Incident Type:
+            input#incidentType.form-control(type='textarea' placeholder='incident Type' name='incidentType' value=(undefined===incident ? '' : incident.incidentType) required='true')
+      div.row
+        div.col
+          div.form-group
+            label(for='location') Location:
+            input#location.form-control(type='text' placeholder='Location' name='location' value=(undefined===incident ? '' : incident.location) required='true')
+        div.col
+          div.form-group
+            label(for='locationCommon') Location Common Name:
+            input#locationCommon.form-control(type='textarea' placeholder='Common Name For Location' name='locationCommon' value=(undefined===incident ? '' : incident.locationCommon) required='true')
+      div.row
+        div.col
+          div.form-group
+            label(for='addPeople') Add Person:
+            input#addPeople.form-control(type='textarea' placeholder='Add People' name='addPeople' value=(undefined===incident ? '' : incident.addPeople) required='true')
+      div.row
+        div.col
+          div.form-group
+            label(for='addVehicle') Add Vehicle:
+            input#addVehicle.form-control(type='textarea' placeholder='Add Vehicle' name='addVehicle' value=(undefined===incident ? '' : incident.addVehicle) required='true')
+      div.row
+        div.col
+          div.form-group
+            label(for='narrative') Narrative:
+            input#narrative.form-control(type='textarea' placeholder='Narrative' name='narrative' value=(undefined===incident ? '' : incident.narrative) required='true')
+      div.row
+        div.col
+          button(onclick='moreFields()') +  
+    section#new 
+      input#RemovePersonButton(type='button' value='-' onclick='this.parentNode.parentNode.removeChild(this.parentNode);')
+    button.btn.btn-primary(type='submit') Submit
+    if errors
+      ul
+        for error in errors
+          li!= error.msg

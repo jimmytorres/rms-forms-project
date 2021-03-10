@@ -2,48 +2,50 @@ extends layout
 
 block content
   form(method='POST' action='')
-  div.row
-    div.col
-      div.form-group
-        label(for='plate_number') Plate Number:
-        input#plate_number.form-control(type='text', placeholder='plate_number' name='plate_number' required='true' value=(undefined===vehicle ? '' : vehicle.plate_number) )
-    div.col
-      div.form-group
-        label(for='vehicle_color') Vehicle Color:
-        input#vehicle_color.form-control(type='text', placeholder='vehicle_color' name='vehicle_color' required='true' value=(undefined===vehicle ? '' : vehicle.vehicle_color) )
-    div.col
-      div.form-group
-        label(for='vehicle_year') Vehicle Year:
-        input#vehicle_year.form-control(type='textarea', placeholder='vehicle_year' name='vehicle_year' value=(undefined===vehicle ? '' : vehicle.vehicle_year) required='true')
-    div.col
-      div.form-group
-        label(for='vehicle_make') Vehicle Make:
-        input#vehicle_make.form-control(type='text', placeholder='vehicle_make' name='vehicle_make' value=(undefined===vehicle ? '' : vehicle.vehicle_make) required='true')
-    div.col
-      div.form-group
-        label(for='vehicle_model') Vehicel Model:
-        input#vehicle_model.form-control(type='text', placeholder='vehicle_model' name='vehicle_model' value=(undefined===vehicle ? '' : vehicle.vehicle_model) required='true')
-  div.row
-    div.col
-      div.form-group
-        label(for='vehicle_body_type') Vehicle Body Type:
-        input#vehicle_body_type.form-control(type='text', placeholder='vehicle_body_type' name='vehicle_body_type' value=(undefined===vehicle ? '' : vehicle.vehicle_body_type) required='true')
-    div.col
-      div.form-group
-        label(for='vehicle_registration') Vehicle Registration:
-        input#vehicle_registration.form-control(type='text', placeholder='vehicle_registration' name='vehicle_registration' value=(undefined===vehicle ? '' : vehicle.vehicle_registration) required='true')
-    div.col
-      div.form-group
-        label(for='vehicle_vin') Vehicle VIN:
-        input#vehicle_vin.form-control(type='text', placeholder='vehicle_vin' name='vehicle_vin' value=(undefined===vehcile ? '' : vehicle.vehicle_vin) required='true')
-  div.row
-    div.form-group
-      label(for='vehicle_details') Vehicle Details:
-      input#vehicle_details.form-control(type='text', placeholder='vehicle_details' name='vehicle_details' value=(undefined===vehicle ? '' : vehicle.vehicle_details) required='true')
-  div.row
-    button.btn.btn-primary(type='submit') Submit
+    div.row
+      div.col
+        div.form-group
+          label(for='plate_number') Plate Number:
+          input#plate_number.form-control(type='text', placeholder='plate_number' name='plate_number' required='true' value=(undefined===vehicle ? '' : vehicle.plate_number) )
+      div.col
+        div.form-group
+          label(for='vehicle_color') Vehicle Color:
+          input#vehicle_color.form-control(type='text', placeholder='vehicle_color' name='vehicle_color' required='true' value=(undefined===vehicle ? '' : vehicle.vehicle_color) )
+      div.col
+        div.form-group
+          label(for='vehicle_year') Vehicle Year:
+          input#vehicle_year.form-control(type='textarea', placeholder='vehicle_year' name='vehicle_year' value=(undefined===vehicle ? '' : vehicle.vehicle_year) required='true')
+      div.col
+        div.form-group
+          label(for='vehicle_make') Vehicle Make:
+          input#vehicle_make.form-control(type='text', placeholder='vehicle_make' name='vehicle_make' value=(undefined===vehicle ? '' : vehicle.vehicle_make) required='true')
+      div.col
+        div.form-group
+          label(for='vehicle_model') Vehicel Model:
+          input#vehicle_model.form-control(type='text', placeholder='vehicle_model' name='vehicle_model' value=(undefined===vehicle ? '' : vehicle.vehicle_model) required='true')
+    div.row
+      div.col
+        div.form-group
+          label(for='vehicle_body_type') Vehicle Body Type:
+          input#vehicle_body_type.form-control(type='text', placeholder='vehicle_body_type' name='vehicle_body_type' value=(undefined===vehicle ? '' : vehicle.vehicle_body_type) required='true')
+      div.col
+        div.form-group
+          label(for='vehicle_registration') Vehicle Registration:
+          input#vehicle_registration.form-control(type='text', placeholder='vehicle_registration' name='vehicle_registration' value=(undefined===vehicle ? '' : vehicle.vehicle_registration) required='true')
+      div.col
+        div.form-group
+          label(for='vehicle_vin') Vehicle VIN:
+          input#vehicle_vin.form-control(type='text', placeholder='vehicle_vin' name='vehicle_vin' value=(undefined===vehcile ? '' : vehicle.vehicle_vin) required='true')
+    div.row
+      div.col
+        div.form-group
+          label(for='vehicle_details') Vehicle Details:
+          input#vehicle_details.form-control(type='text', placeholder='vehicle_details' name='vehicle_details' value=(undefined===vehicle ? '' : vehicle.vehicle_details) required='true')
+    div.row
+      div.col
+        button.btn.btn-primary(type='submit') Submit
 
-  if errors 
-    ul
-      for error in errors
-        li!= error.msg
+    if errors 
+      ul
+        for error in errors
+          li!= error.msg
