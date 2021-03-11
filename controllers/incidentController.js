@@ -70,12 +70,7 @@ exports.incident_create_post = [
         .isAlphanumeric().withMessage('First name has non-alphanumeric characters.'),
     body('incidentType').trim().isLength({ min: 1 }).escape().withMessage('Family name must be specified.')
         .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
-    body('addPeople').trim().isLength({ max: 1 }).escape().withMessage('Middle intial must be specified.')
-        .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
-    body('addVehicle').trim().isLength({ max: 1 }).escape().withMessage('Middle intial must be specified.')
-        .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
     body('occurrenceDate', 'Invalid date of birth').optional({ checkFalsy: true }).isISO8601().toDate(),
-    body('occurrenceTime', 'Invalid date of death').optional({ checkFalsy: true }).isISO8601().toTime(),
     body('narrative').trim().isLength({ min: 1 }).escape().withMessage('Narrative must be specified.')
         .isString().withMessage('Narrative has alpha characters.'),
 
