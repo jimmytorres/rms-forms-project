@@ -10,7 +10,7 @@ block content
       div.col
         div.form-group
           label(for='ssn') Social Security Number:
-          input#ssn.form-control(type='text', placeholder='SSN' name='ssn' required='false' value=(undefined===people ? '' : people.ssn) )
+          input#ssn.form-control(type='text', placeholder='SSN' name='ssn' value=(undefined===people ? '' : people.ssn) )
     div.row
       div.col
         div.form-group
@@ -29,7 +29,7 @@ block content
           input#race.form-control(type='text', placeholder='Race' name='race' required='true' value=(undefined===people ? '' : people.race) )
       div.col
         div.form-group
-          label(for='origin') Origin:
+          label(for='origin') Origin/Gender:
           input#origin.form-control(type='text', placeholder='Origin' name='origin' required='true' value=(undefined===people ? '' : people.origin) )
       div.col
         div.form-group
@@ -58,37 +58,37 @@ block content
       div.col
         div.form-group
           label(for='gang_aff') Gang Affiliation:
-          input#gang_aff.form-control(type='text', placeholder='Gang Affiliation' name='gang_aff' required='true' value=(undefined===people ? '' : people.gang_aff) )
+          input#gang_aff.form-control(type='text', placeholder='Gang Affiliation' name='gang_aff' value=(undefined===people ? '' : people.gang_aff) )
       div.col 
         div.form-group
           label(for='address') Address:
-          input#address.form-control(type='text', placeholder='11111 W Street dr' name='address' required='true' value=(undefined===people ? '' : people.address) )
+          input#address.form-control(type='text', placeholder='11111 W Street dr' name='address' value=(undefined===people ? '' : people.address) )
       div.col
         div.form-group
           label(for='phone_number') Phone Number:
-          input#phonenumber.form-control(type='text', placeholder='111-111-1111' name='phone_number' required='true' value=(undefined===people ? '' : people.phone_number) )
+          input#phonenumber.form-control(type='text', placeholder='111-111-1111' name='phone_number' value=(undefined===people ? '' : people.phone_number) )
     div.row
       div.col
         div.form-group
           label(for='dl') Driver's Licence:
-          input#dl.form-control(type='text', placeholder='Drivers licence' name='dl' required='false' value=(undefined===people ? '' : people.dl) )
+          input#dl.form-control(type='text', placeholder='Drivers licence' name='dl' value=(undefined===people ? '' : people.dl) )
       div.col
         div.form-group
-          label(for='address2') Address:
-          input#ad.form-control(type='text', placeholder='11111 W Street dr' name='address2' required='true' value=(undefined===people ? '' : people.address) )
+          label(for='address2') Address 2:
+          input#ad.form-control(type='text', placeholder='11111 W Street dr' name='address2' value=(undefined===people ? '' : people.address) )
       div.col
         div.form-group
-          label(for='phone_number') Phone Number:
-          input#pn.form-control(type='text', placeholder='111-111-1111' name='phone_number' required='true' value=(undefined===people ? '' : people.phone_number) )
+          label(for='phone_number') Phone Number 2:
+          input#pn.form-control(type='text', placeholder='111-111-1111' name='phone_number' value=(undefined===people ? '' : people.phone_number) )
     div.row
       div.col
         div.form-group
           label(for='smt') Scars, Marks and Tattoos:
-          input#smt.form-control(type='text', placeholder='Scars/Marks/Tattoos' name='smt' required='true' value=(undefined===people ? '' : people.smt) )
+          input#smt.form-control(type='text', placeholder='Scars/Marks/Tattoos' name='smt' value=(undefined===people ? '' : people.smt) )
       div.col
         div.form-group
           label(for='hazard') HAZARD:
-          input#hazard.form-control(type='text', placeholder='HAZARD' name='hazard' required='true' value=(undefined===people ? '' : people.hazard) )
+          input#hazard.form-control(type='text', placeholder='HAZARD' name='hazard' value=(undefined===people ? '' : people.hazard) )
     div.row
       div.col
         div.form-group

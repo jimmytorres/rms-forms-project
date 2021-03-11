@@ -66,26 +66,14 @@ exports.people_create_post = [
         .isAlphanumeric().withMessage('Hair color has non-alphanumeric characters.'),
     body('race').trim().isLength({ min: 1 }).escape().withMessage('Race  must be specified.')
         .isAlphanumeric().withMessage('Race has non-alphanumeric characters.'),
-    body('ssn').trim().isLength({ max: 9 }).escape().withMessage('Social security must be specified.')
-        .isAlphanumeric().withMessage('Social security has numeric characters.'),
-    body('dl').trim().isLength({ max: 9 }).escape().withMessage('Driver License must be specified.')
-        .isAlphanumeric().withMessage('Driver License has alphanumeric characters.'),
-    body('smt').trim().isLength({ min: 1 }).escape().withMessage('Scars Marks and Tatoos must be specified.')
-        .isAlphanumeric().withMessage('Scars Marks and Tatoos has non-alphanumeric characters.'),
-    body('address').trim().isLength({ min: 1 }).escape().withMessage('Address must be specified.')
-        .isString().withMessage('Address non-alphanumeric characters.'),
-    body('phone_number').trim().isLength({ min: 1 }).escape().withMessage('Phone number must be specified.')
-        .isAlphanumeric().withMessage('Phone number has non-alphanumeric characters.'),
     body('height').trim().isLength({ max: 3 }).escape().withMessage('Height must be specified.')
         .isNumeric().withMessage('Height has numeric characters.'),
-    body('gang_aff').trim().isLength({ min: 1 }).escape().withMessage('Gang Affilation must be specified.')
-        .isAlphanumeric().withMessage('Gang Affilation has non-alphanumeric characters.'),
-    body('hazard').trim().isLength({ min: 1 }).escape().withMessage('Hazard must be specified.')
-        .isAlphanumeric().withMessage('Hazard has non-alphanumeric characters.'),
     body('weight').trim().isLength({ max: 3 }).escape().withMessage('Weight must be specified.')
         .isNumeric().withMessage('Weight has numeric characters.'),
     body('eye_color').trim().isLength({ max: 3 }).escape().withMessage('Eye color must be specified.')
         .isAlphanumeric().withMessage('Eye color has non-alphanumeric characters.'),
+    body('phone_number').trim().isLength({ max: 10 }).escape().optional().withMessage('Phone Number must not have dashes.'),
+    body('dl').trim().isLength({ max: 9 }).escape().optional(),
 
     // Process request after validation and sanitization.
     (req, res, next) => {
@@ -218,26 +206,14 @@ exports.people_update_post = [
         .isAlphanumeric().withMessage('Hair color has non-alphanumeric characters.'),
     body('race').trim().isLength({ min: 1 }).escape().withMessage('Race  must be specified.')
         .isAlphanumeric().withMessage('Race has non-alphanumeric characters.'),
-    body('ssn').trim().isLength({ max: 9 }).escape().withMessage('Social security must be specified.')
-        .isAlphanumeric().withMessage('Social security has numeric characters.'),
-    body('dl').trim().isLength({ max: 9 }).escape().withMessage('Driver License must be specified.')
-        .isAlphanumeric().withMessage('Driver License has alphanumeric characters.'),
-    body('smt').trim().isLength({ min: 1 }).escape().withMessage('Scars Marks and Tatoos must be specified.')
-        .isAlphanumeric().withMessage('Scars Marks and Tatoos has non-alphanumeric characters.'),
-    body('address').trim().isLength({ min: 1 }).escape().withMessage('Address must be specified.')
-        .isString().withMessage('Address non-alphanumeric characters.'),
-    body('phone_number').trim().isLength({ min: 1 }).escape().withMessage('Phone number must be specified.')
-        .isAlphanumeric().withMessage('Phone number has non-alphanumeric characters.'),
     body('height').trim().isLength({ max: 3 }).escape().withMessage('Height must be specified.')
         .isNumeric().withMessage('Height has numeric characters.'),
-    body('gang_aff').trim().isLength({ min: 1 }).escape().withMessage('Gang Affilation must be specified.')
-        .isAlphanumeric().withMessage('Gang Affilation has non-alphanumeric characters.'),
-    body('hazard').trim().isLength({ min: 1 }).escape().withMessage('Hazard must be specified.')
-        .isAlphanumeric().withMessage('Hazard has non-alphanumeric characters.'),
     body('weight').trim().isLength({ max: 3 }).escape().withMessage('Weight must be specified.')
         .isNumeric().withMessage('Weight has numeric characters.'),
     body('eye_color').trim().isLength({ max: 3 }).escape().withMessage('Eye color must be specified.')
         .isAlphanumeric().withMessage('Eye color has non-alphanumeric characters.'),
+    body('phone_number').trim().isLength({ max: 10 }).escape().optional(),
+    body('dl').trim().isLength({ max: 9 }).escape().optional(),
 
     // Process request after validation and sanitization.
     (req, res, next) => {
