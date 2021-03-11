@@ -66,10 +66,8 @@ exports.incident_create_get = function (req, res, next) {
 exports.incident_create_post = [
 
     // Validate and sanitize fields.
-    body('formid').trim().isLength({ min: 1 }).escape().withMessage('First name must be specified.')
-        .isAlphanumeric().withMessage('First name has non-alphanumeric characters.'),
-    body('incidentType').trim().isLength({ min: 1 }).escape().withMessage('Family name must be specified.')
-        .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
+    body('incidentType').trim().isLength({ min: 1 }).escape().withMessage('Incident type must be specified.')
+        .isAlphanumeric().withMessage('Incident type has non-alphanumeric characters.'),
     body('occurrenceDate', 'Invalid date of birth').optional({ checkFalsy: true }).isISO8601().toDate(),
     body('narrative').trim().isLength({ min: 1 }).escape().withMessage('Narrative must be specified.')
         .isString().withMessage('Narrative has alpha characters.'),
@@ -89,8 +87,6 @@ exports.incident_create_post = [
                 incidentType: req.body.incidentType,
                 location: req.body.location,
                 locationCommon: req.body.locationCommon,
-                addPeople: req.body.addPeople,
-                addVehicle: req.body.addVehicle,
                 narrative: req.body.narrative,
             }
         );
@@ -180,14 +176,9 @@ exports.incident_update_get = function (req, res) {
 exports.incident_update_post = [
 
     // Validate and santitize fields.
-    body('formid').trim().isLength({ min: 1 }).escape().withMessage('First name must be specified.')
-        .isAlphanumeric().withMessage('First name has non-alphanumeric characters.'),
-    body('incidentType').trim().isLength({ min: 1 }).escape().withMessage('Family name must be specified.')
-        .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
-    body('addPeople').trim().isLength({ max: 1 }).escape().withMessage('Middle intial must be specified.')
-        .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
-    body('addVehicle').trim().isLength({ max: 1 }).escape().withMessage('Middle intial must be specified.')
-        .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
+    body('incidentType').trim().isLength({ min: 1 }).escape().withMessage('Incident type must be specified.')
+        .isAlphanumeric().withMessage('Incident type has non-alphanumeric characters.'),
+    body('occurrenceDate', 'Invalid date of birth').optional({ checkFalsy: true }).isISO8601().toDate(),
     body('narrative').trim().isLength({ min: 1 }).escape().withMessage('Narrative must be specified.')
         .isString().withMessage('Narrative has alpha characters.'),
 
@@ -206,8 +197,6 @@ exports.incident_update_post = [
                 incidentType: req.body.incidentType,
                 location: req.body.location,
                 locationCommon: req.body.locationCommon,
-                addPeople: req.body.addPeople,
-                addVehicle: req.body.addVehicle,
                 narrative: req.body.narrative,
                 _id: req.params.id // This is required, or a new ID will be assigned!
             });

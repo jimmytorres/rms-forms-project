@@ -11,8 +11,6 @@ var IncidentSchema = new Schema(
         incidentType: { type: String, required: true },
         location: { type: String, required: true },
         locationCommon: { type: String, required: true },
-        addPeople: { type: String, required: true },
-        addVehicle: { type: String, required: true },
         narrative: { type: String, required: true },
     }
 );
