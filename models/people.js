@@ -19,6 +19,8 @@ var PeopleSchema = new Schema(
         smt: { type: String },
         address: { type: String, maxlength: 100 },
         phone_number: { type: Number, maxlength: 10 },
+        address2: { type: String, maxlength: 100 },
+        phone_number2: { type: Number, maxlength: 10 },
         height: { type: Number, required: true, maxlength: 3 },
         gang_aff: { type: String, maxlength: 100 },
         hazard: { type: String, maxlength: 100 },
@@ -91,11 +93,25 @@ PeopleSchema
         return this.address;
     });
 
+// Virtual for Person's 2nd address
+PeopleSchema
+    .virtual('adress2')
+    .get(function () {
+        return this.address2;
+    });
+
 // Virtual for Person's phone number
 PeopleSchema
     .virtual('phone')
     .get(function () {
         return this.phone_number;
+    });
+
+// Virtual for Person's 2nd phone number
+PeopleSchema
+    .virtual('phone2')
+    .get(function () {
+        return this.phone_number2;
     });
 
 // Virtual for Person's gang affiation

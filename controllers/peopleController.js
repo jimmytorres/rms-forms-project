@@ -73,6 +73,7 @@ exports.people_create_post = [
     body('eye_color').trim().isLength({ max: 3 }).escape().withMessage('Eye color must be specified.')
         .isAlphanumeric().withMessage('Eye color has non-alphanumeric characters.'),
     body('phone_number').trim().isLength({ max: 10 }).escape().optional().withMessage('Phone Number must not have dashes.'),
+    body('phone_number2').trim().isLength({ max: 10 }).escape().optional().withMessage('Phone Number must not have dashes.'),
     body('dl').trim().isLength({ max: 9 }).escape().optional(),
 
     // Process request after validation and sanitization.
@@ -98,6 +99,8 @@ exports.people_create_post = [
                 smt: req.body.smt,
                 address: req.body.address,
                 phone_number: req.body.phone_number,
+                address2: req.body.address2,
+                phone_number2: req.body.phone_number2,
                 height: req.body.height,
                 gang_aff: req.body.gang_aff,
                 hazard: req.body.hazard,
@@ -212,7 +215,8 @@ exports.people_update_post = [
         .isNumeric().withMessage('Weight has numeric characters.'),
     body('eye_color').trim().isLength({ max: 3 }).escape().withMessage('Eye color must be specified.')
         .isAlphanumeric().withMessage('Eye color has non-alphanumeric characters.'),
-    body('phone_number').trim().isLength({ max: 10 }).escape().optional(),
+    body('phone_number').trim().isLength({ max: 10 }).escape().optional().withMessage('Phone Number must not have dashes.'),
+    body('phone_number2').trim().isLength({ max: 10 }).escape().optional().withMessage('Phone Number must not have dashes.'),
     body('dl').trim().isLength({ max: 9 }).escape().optional(),
 
     // Process request after validation and sanitization.
@@ -238,6 +242,8 @@ exports.people_update_post = [
                 smt: req.body.smt,
                 address: req.body.address,
                 phone_number: req.body.phone_number,
+                address2: req.body.address2,
+                phone_number2: req.body.phone_number2,
                 height: req.body.height,
                 gang_aff: req.body.gang_aff,
                 hazard: req.body.hazard,
