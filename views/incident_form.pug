@@ -36,8 +36,14 @@ block content
     div.row
       div.col
         div.form-group
-          label(for='p_code') Code:
-          input#p_code.form-control(type='text' placeholder='Victim' name='p_code' required='true' value=(undefined===people ? '' : people.p_code) )
+          label.input-group-text(for='inputGroupSelect01') Code
+            select#inputGroupSelect01.form-select
+              option(selected='') Choose...
+              option#white.race(value='1') V
+              option#black.race(value='2') RP1
+              option#hispanic.race(value='3') W
+              option#indian.race(value='4') IL4
+              option#asian.race(value='5') S
       div.col
         div.form-group
           label(for='ssn') Social Security Number:
@@ -63,8 +69,8 @@ block content
               option#black.race(value='2') Black
               option#hispanic.race(value='3') Hispanic
               option#indian.race(value='4') Indian
-              option#asian.race(value='5') A
-              option#unknown.race(value='6') U
+              option#asian.race(value='5') Asain
+              option#unknown.race(value='6') Unknown
       div.col
         div.form-group
           label.input-group-text(for='inputGroupSelect01') Gender
@@ -163,11 +169,11 @@ block content
       div.col
         div.form-group
           label(for='address2') Address:
-          input#ad.form-control(type='text' placeholder='11111 W Street dr' name='address2' required='true' value=(undefined===people ? '' : people.address) )
+          input#ad.form-control(type='text' placeholder='11111 W Street dr' name='address2' required='false' value=(undefined===people ? '' : people.address) )
       div.col
         div.form-group
           label(for='phone_number') Phone Number:
-          input#pn.form-control(type='text' placeholder='111-111-1111' name='phone_number' required='true' value=(undefined===people ? '' : people.phone_number) )
+          input#pn.form-control(type='text' placeholder='111-111-1111' name='phone_number' required='false' value=(undefined===people ? '' : people.phone_number) )
     div.row
       div.col
         div.form-group
