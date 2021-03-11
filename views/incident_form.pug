@@ -56,12 +56,23 @@ block content
         img(src='' alt='Person pic')
       div.col
         div.form-group
-          label(for='race') Race:
-          input#race.form-control(type='text' placeholder='Race' name='race' required='true' value=(undefined===people ? '' : people.race) )
+          label.input-group-text(for='inputGroupSelect01') Race
+            select#inputGroupSelect01.form-select
+              option(selected='') Choose...
+              option#white.race(value='1') White
+              option#black.race(value='2') Black
+              option#hispanic.race(value='3') Hispanic
+              option#indian.race(value='4') Indian
+              option#asian.race(value='5') A
+              option#unknown.race(value='6') U
       div.col
         div.form-group
-          label(for='origin') Origin:
-          input#origin.form-control(type='text' placeholder='Origin' name='origin' required='true' value=(undefined===people ? '' : people.origin) )
+          label.input-group-text(for='inputGroupSelect01') Gender
+            select#inputGroupSelect01.form-select
+              option(selected='') Choose...
+              option#white.race(value='1') Male
+              option#black.race(value='2') Female
+              option#hispanic.race(value='3') Other
       div.col
         div.form-group
           label(for='height') Height:
@@ -72,8 +83,31 @@ block content
           input#weight_color.form-control(typr='text' placeholder='Weight' name='weight' required='true' value=(undefined===people ? '' : people.weight) )
       div.col
         div.form-group
-          label(for='hair_color') Hair Color:
-          input#hair_color.form-control(type='text' placeholder='Hair Color' name='hair_color' required='true' value=(undefined===people ? '' : people.hair_color) )
+          label.input-group-text(for='inputGroupSelect01') Hair Color
+          select#inputGroupSelect01.form-select
+            option(selected='') Choose...
+            option#white.race(value='1') BGE
+            option#black.race(value='2') BLK
+            option#hispanic.race(value='3') BLU
+            option#indian.race(value='4') DBL
+            option#asian.race(value='5') LBL
+            option#unknown.race(value='6') BRZ
+            option#unknown.race(value='7') BRO
+            option#unknown.race(value='8') GLD
+            option#unknown.race(value='9') GRY
+            option#unknown.race(value='10') GRN
+            option#unknown.race(value='11') MAR
+            option#unknown.race(value='12') ORG
+            option#unknown.race(value='13') PNK
+            option#unknown.race(value='14') PLE
+            option#unknown.race(value='15') RED
+            option#unknown.race(value='16') SIL
+            option#unknown.race(value='17') TAN
+            option#unknown.race(value='18') TRQ
+            option#unknown.race(value='19') WHI
+            option#unknown.race(value='20') YEL
+            option#unknown.race(value='21') TEA
+            option#unknown.race(value='22') UNK
     div.row
       div.col
         div.form-group
@@ -83,8 +117,31 @@ block content
           input#date_of_death.form-control(type='date' name='date_of_death' value=(undefined===people ? '' : people.date_of_death_yyyy_mm_dd) )
       div.col
         div.form-group
-          label(for='eye_color') Eye Color:
-          input#eye_color.form-control(type='text' placeholder='Eye Color' name='eye_color' required='true' value=(undefined===people ? '' : people.eye_color) )
+          label.input-group-text(for='inputGroupSelect01') Eye Color
+          select#inputGroupSelect01.form-select
+            option(selected='') Choose...
+            option#white.race(value='1') BGE
+            option#black.race(value='2') BLK
+            option#hispanic.race(value='3') BLU
+            option#indian.race(value='4') DBL
+            option#asian.race(value='5') LBL
+            option#unknown.race(value='6') BRZ
+            option#unknown.race(value='7') BRO
+            option#unknown.race(value='8') GLD
+            option#unknown.race(value='9') GRY
+            option#unknown.race(value='10') GRN
+            option#unknown.race(value='11') MAR
+            option#unknown.race(value='12') ORG
+            option#unknown.race(value='13') PNK
+            option#unknown.race(value='14') PLE
+            option#unknown.race(value='15') RED
+            option#unknown.race(value='16') SIL
+            option#unknown.race(value='17') TAN
+            option#unknown.race(value='18') TRQ
+            option#unknown.race(value='19') WHI
+            option#unknown.race(value='20') YEL
+            option#unknown.race(value='21') TEA
+            option#unknown.race(value='22') UNK
     div.row
       div.col
         div.form-group
@@ -128,8 +185,31 @@ block content
         input#plate_number.form-control(type='text' placeholder='Plate Number' name='plate_number' required='true' value=(undefined===vehicle ? '' : vehicle.plate_number) )
       div.col
         div.form-group
-          label(for='vehicle_color') Vehicle Color:
-          input#vehicle_color.form-control(type='text' placeholder='Vehicle Color' name='vehicle_color' required='true' value=(undefined===vehicle ? '' : vehicle.vehicle_color) )
+          label.input-group-text(for='inputGroupSelect01') Color
+          select#inputGroupSelect01.form-select
+            option(selected='') Choose...
+            option#white.race(value='1') BGE
+            option#black.race(value='2') BLK
+            option#hispanic.race(value='3') BLU
+            option#indian.race(value='4') DBL
+            option#asian.race(value='5') LBL
+            option#unknown.race(value='6') BRZ
+            option#unknown.race(value='7') BRO
+            option#unknown.race(value='8') GLD
+            option#unknown.race(value='9') GRY
+            option#unknown.race(value='10') MAR
+            option#unknown.race(value='11') GRN
+            option#unknown.race(value='12') ORG
+            option#unknown.race(value='13') PNK
+            option#unknown.race(value='14') PLE
+            option#unknown.race(value='15') RED
+            option#unknown.race(value='16') SIL
+            option#unknown.race(value='17') TAN
+            option#unknown.race(value='18') TRQ
+            option#unknown.race(value='19') WHI
+            option#unknown.race(value='20') YEL
+            option#unknown.race(value='21') TEA
+            option#unknown.race(value='22') UNK
       div.col
         div.form-group
           label(for='vehicle_year') Vehicle Year:
