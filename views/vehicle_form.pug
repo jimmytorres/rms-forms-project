@@ -1,12 +1,11 @@
 extends layout
-
 block content
   form(method='POST' action='')
     div.row
       div.col
         div.form-group
           label(for='plate_number') Plate Number:
-          input#plate_number.form-control(type='text', placeholder='Plate Number' name='plate_number' required='true' value=(undefined===vehicle ? '' : vehicle.plate_number) )
+          input#plate_number.form-control(type='text', placeholder='Plate Number' name='plate_number'  value=(undefined===vehicle ? '' : vehicle.plate_number) )
       div.col
         div.form-group
           label(for='vehicle_color') Vehicle Color:
@@ -14,7 +13,7 @@ block content
       div.col
         div.form-group
           label(for='vehicle_year') Vehicle Year:
-          input#vehicle_year.form-control(type='date', placeholder='Vehicle Year' name='vehicle_year' value=(undefined===vehicle ? '' : vehicle.vehicle_year) required='true')
+          input#vehicle_year.form-control(type='text', placeholder='Vehicle Year' name='vehicle_year' value=(undefined===vehicle ? '' : vehicle.vehicle_year) required='true')
       div.col
         div.form-group
           label(for='vehicle_make') Vehicle Make:
@@ -31,21 +30,21 @@ block content
       div.col
         div.form-group
           label(for='vehicle_registration') Vehicle Registration:
-          input#vehicle_registration.form-control(type='text', placeholder='Vehicle Registration' name='vehicle_registration' value=(undefined===vehicle ? '' : vehicle.vehicle_registration) required='true')
+          input#vehicle_registration.form-control(type='text', placeholder='Vehicle Registration' name='vehicle_registration' value=(undefined===vehicle ? '' : vehicle.vehicle_registration) )
       div.col
         div.form-group
           label(for='vehicle_vin') Vehicle VIN:
-          input#vehicle_vin.form-control(type='text', placeholder='Vehicle Vin' name='vehicle_vin' value=(undefined===vehcile ? '' : vehicle.vehicle_vin) required='true')
+          input#vehicle_vin.form-control(type='text', placeholder='Vehicle Vin' name='vehicle_vin' value=(undefined===vehcile ? '' : vehicle.vehicle_vin) )
     div.row
       div.col
         div.form-group
           label(for='vehicle_details') Vehicle Details:
-          input#vehicle_details.form-control(type='text', placeholder='Vehicle Details' name='vehicle_details' value=(undefined===vehicle ? '' : vehicle.vehicle_details) required='true')
+          input#vehicle_details.form-control(type='text', placeholder='Vehicle Details' name='vehicle_details' value=(undefined===vehicle ? '' : vehicle.vehicle_details) )
     div.row
       div.col
         button.btn.btn-primary(type='submit') Submit
-
-    if errors 
+        
+    if errors
       ul
         for error in errors
           li!= error.msg

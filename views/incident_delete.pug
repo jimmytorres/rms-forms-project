@@ -1,0 +1,13 @@
+extends layout
+
+block content
+
+  h1 #{title}: #{incident.name}
+  
+    p Do you really want to delete this incident?
+    
+    form(method='POST' action='')
+      div.form-group
+        input#incidentid.form-control(type='hidden',name='incidentid', required='true', value=incident._id )
+
+      button.btn.btn-primary(type='submit') Delete

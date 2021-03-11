@@ -1,0 +1,13 @@
+extends layout
+
+block content
+
+  h1 #{title}: #{vehicle.name}
+  
+    p Do you really want to delete this vehicle?
+    
+    form(method='POST' action='')
+      div.form-group
+        input#vehicleid.form-control(type='hidden',name='vehicleid', required='true', value=vehicle._id )
+
+      button.btn.btn-primary(type='submit') Delete

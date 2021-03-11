@@ -49,7 +49,7 @@ exports.vehicle_create_post = [
 
     // Validate and sanitize fields.
     body('plate_number').trim().isLength({ min: 1, max: 7 }).escape().withMessage('Plate number must be specified.')
-        .isAlphanumeric().withMessage('Plate number has alphanumeric characters.'),
+        .isAlphanumeric().optional().withMessage('Plate number has alphanumeric characters.'),
     body('vehicle_color').trim().isLength({ max: 3 }).escape().withMessage('Vehicle color must be specified.')
         .isAlphanumeric().withMessage('Vehicle color has non-alphanumeric characters.'),
     body('vehicle_year').trim().isLength({ min: 4, max: 4 }).escape().withMessage('Vehicle year must be specified.')
@@ -61,11 +61,11 @@ exports.vehicle_create_post = [
     body('vehicle_body_type').trim().isLength({ max: 2 }).escape().withMessage('Vehicle body type must be specified.')
         .isAlphanumeric().withMessage('Vehicle body type has alphanumeric characters.'),
     body('vehicle_details').trim().isLength({ min: 1 }).escape().withMessage('Vehicle details must be specified.')
-        .isString().withMessage('Vehicle details has non-alphanumeric characters.'),
+        .isString().optional().withMessage('Vehicle details has non-alphanumeric characters.'),
     body('vehicle_vin').trim().isLength({ min: 1, max: 17 }).escape().withMessage('Vehicle vin must be specified.')
-        .isAlphanumeric().withMessage('Vehicle vin has numeric characters.'),
-    body('vehicle_registration').trim().isLength({ min: 1 }).escape().withMessage('Vehicle registration must be specified.')
-        .isString().withMessage('Vehicle registration has non-alphanumeric characters.'),
+        .isAlphanumeric().optional().withMessage('Vehicle vin has numeric characters.'),
+    body('vehicle_registration').trim().isLength({ min: 1 }).escape()
+        .isString().optional().withMessage('Vehicle registration has non-alphanumeric characters.'),
 
     // Process request after validation and sanitization.
     (req, res, next) => {
@@ -114,7 +114,7 @@ exports.vehicle_delete_get = function (req, res) {
             Vehicle.findById(req.params.id).exec(callback)
         },
         vehicle_people: function (callback) {
-            People.find({ 'vehicle': rreq.params.id }).exec(callback)
+            People.find({ 'vehicle': req.params.id }).exec(callback)
         },
     }, function (err, results) {
         if (err) { return next(err); }
@@ -172,7 +172,7 @@ exports.vehicle_update_get = function (req, res) {
 exports.vehicle_update_post = [
     // Validate and santize fields.
     body('plate_number').trim().isLength({ min: 1, max: 7 }).escape().withMessage('Plate number must be specified.')
-        .isAlphanumeric().withMessage('Plate number has alphanumeric characters.'),
+        .isAlphanumeric().optional().withMessage('Plate number has alphanumeric characters.'),
     body('vehicle_color').trim().isLength({ max: 3 }).escape().withMessage('Vehicle color must be specified.')
         .isAlphanumeric().withMessage('Vehicle color has non-alphanumeric characters.'),
     body('vehicle_year').trim().isLength({ min: 4, max: 4 }).escape().withMessage('Vehicle year must be specified.')
@@ -181,14 +181,14 @@ exports.vehicle_update_post = [
         .isAlphanumeric().withMessage('Vehicle make has alphanumeric characters.'),
     body('vehicle_model').trim().isLength({ min: 1 }).escape().withMessage('Vehicle model must be specified.')
         .isAlphanumeric().withMessage('Vehicle model has alphanumeric characters.'),
-    body('vehicle_body_type').trim().isLength({ max: 2}).escape().withMessage('Vehicle body type must be specified.')
+    body('vehicle_body_type').trim().isLength({ max: 2 }).escape().withMessage('Vehicle body type must be specified.')
         .isAlphanumeric().withMessage('Vehicle body type has alphanumeric characters.'),
     body('vehicle_details').trim().isLength({ min: 1 }).escape().withMessage('Vehicle details must be specified.')
-        .isAlphanumeric().withMessage('Vehicle details has non-alphanumeric characters.'),
+        .isString().optional().withMessage('Vehicle details has non-alphanumeric characters.'),
     body('vehicle_vin').trim().isLength({ min: 1, max: 17 }).escape().withMessage('Vehicle vin must be specified.')
-        .isAlphanumeric().withMessage('Vehicle vin has numeric characters.'),
-    body('vehicle_registration').trim().isLength({ min: 1 }).escape().withMessage('Vehicle registration must be specified.')
-        .isAlphanumeric().withMessage('Vehicle registration has non-alphanumeric characters.'),
+        .isAlphanumeric().optional().withMessage('Vehicle vin has numeric characters.'),
+    body('vehicle_registration').trim().isLength({ min: 1 }).escape()
+        .isString().optional().withMessage('Vehicle registration has non-alphanumeric characters.'),
 
     // Process request after validation and sanitization.
     (req, res, next) => {

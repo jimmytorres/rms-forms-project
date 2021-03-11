@@ -1,7 +1,7 @@
 var Incident = require('../models/incident');
 var People = require('../models/people');
-var Vehicle = require('../models/vehicle');
 var async = require('async');
+var Vehicle = require('../models/vehicle');
 
 const { body, validationResult } = require('express-validator');
 
@@ -193,8 +193,6 @@ exports.incident_update_post = [
         .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
     body('addVehicle').trim().isLength({ max: 1 }).escape().withMessage('Middle intial must be specified.')
         .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
-    body('occurrenceDate', 'Invalid date of birth').optional({ checkFalsy: true }).isISO8601().toDate(),
-    body('occurrenceTime', 'Invalid date of death').optional({ checkFalsy: true }).isISO8601().toDate(),
     body('narrative').trim().isLength({ min: 1 }).escape().withMessage('Narrative must be specified.')
         .isString().withMessage('Narrative has alpha characters.'),
 
